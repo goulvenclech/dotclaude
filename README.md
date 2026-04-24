@@ -1,22 +1,13 @@
 # ~/.claude
 
-My global [Claude Code](https://docs.claude.com/en/docs/claude-code) configuration.
+My global [Claude Code](https://docs.claude.com/en/docs/claude-code) (and sometimes Cursor) configuration 🤖
 
-## Versioned contents
+See [`commands/update-workflow.md`](commands/update-workflow.md) for the philosophy and the up-to-date list of agents and skills. For the longer thinking behind it, read [AI agents](https://goulven-clech.dev/2026/ai-agents/).
 
-- `settings.json` — harness settings
-- `agents/` — subagents (analyst, reviewer, fixer)
-- `commands/` — slash commands (skills)
-- `hooks/` — shell hooks referenced from `settings.json`
-- `cursor/permissions.json` — Cursor IDE auto-run allowlist (symlinked from `~/.cursor/permissions.json`)
-- `rules/`, `output-styles/` — rules and output styles
-- `CLAUDE.md` — global instructions
+## Notable files
 
-Everything else (sessions, caches, history, plugins) is ignored.
-
-## Workflow
-
-See [`commands/update-workflow.md`](commands/update-workflow.md) for the philosophy and the up-to-date list of agents and skills.
+- [`agents/reviewer.md`](agents/reviewer.md) + [`agents/fixer.md`](agents/fixer.md) — my « review cycle », where reviewer flags issues on the current diff, one fixer per critique triages in parallel, the main agent applies valid fixes and re-runs until **LGTM**.
+- [`hooks/block-dangerous-git.sh`](hooks/block-dangerous-git.sh) — pre-tool-use hook that blocks dangerous git commands (`push --force`, `reset --hard`, branch deletion, etc.).
 
 ## Installation
 

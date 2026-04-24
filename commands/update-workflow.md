@@ -2,17 +2,18 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 
 ## Philosophy
 
-- **One main agent orchestrates and implements.** Code modifications are done directly, not delegated.
+- **One main agent orchestrates and implements the majority of the work.**
 - **Analyst for every context-heavy lookup.** Docs, issues, PRs, MCP tools, data exploration — always delegated to preserve the main agent's context window.
-- **Reviewer + fixer loop on every change.** The reviewer critiques the current diff; one fixer per critique runs in parallel. The main agent applies valid fixes and re-runs the reviewer until **LGTM** or every remaining critique is Invalid / out-of-scope.
+- **Review cycle on every change.** Every code change goes through a reviewer → fixer(s) → « apply fixes » loop until the reviewer returns **LGTM**, or every remaining critique is Invalid / out-of-scope.
 - **Guardrails are constant.** Read-only where possible. Nothing pushed, opened, or published without an explicit user order. No destructive git. Never touch production. Honesty over theatre.
-- **Agnostic.** No assumption about Git provider, language, or tooling. Project-specific conventions live in AGENTS.md / CLAUDE.md.
+- **Agnostic.** No assumption about Git provider, language, or tooling. Project-specific conventions live in CONTRIBUTING.md and/or AGENTS.md.
 
 ## Agents (subagents invoked via the Agent tool)
 
 - **analyst** — read-only context gatherer. Codebase search, docs, GitHub/GitLab, MCP, read-only commands. Called before any non-trivial task, and any time the main agent would otherwise spend its own context on raw lookups.
 - **reviewer** — read-only. Critiques the current diff or a named branch against project conventions. Returns a ranked list or `LGTM`.
 - **fixer** — read-only. Validates **one** reviewer critique per call. Returns a verdict: Valid — fix needed / Valid — out of scope / Partly valid / Invalid / Ambiguous.
+- **poet** — drafts written content (PR/MR body, Slack, review comment, release note, etc.) using repo templates when available. Returns a draft only; never publishes.
 
 ## Skills (slash commands)
 
