@@ -1,0 +1,18 @@
+# Tout ignorer par défaut
+*
+
+# Puis allowlist ce qu'on versionne
+!.gitignore
+!README.md
+!CLAUDE.md
+!settings.json
+!rules/
+!rules/**
+!skills/
+!skills/**
+!commands/
+!commands/**
+!agents/
+!agents/**
+!output-styles/
+!output-styles/**

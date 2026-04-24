@@ -1,0 +1,37 @@
+{
+  "model": "opus[1m]",
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "Bash(*)",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch",
+      "Agent",
+      "NotebookEdit",
+      "LSP"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.copilot/hooks/block-dangerous-git.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "high"
+}
