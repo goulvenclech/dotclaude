@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.copilot/hooks/block-dangerous-git.sh"
+            "command": "~/.claude/hooks/block-dangerous-git.sh"
           }
         ]
       }

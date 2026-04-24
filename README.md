@@ -7,6 +7,8 @@ My global [Claude Code](https://docs.claude.com/en/docs/claude-code) configurati
 - `settings.json` — harness settings
 - `agents/` — subagents (analyst, reviewer, fixer)
 - `commands/` — slash commands (skills)
+- `hooks/` — shell hooks referenced from `settings.json`
+- `cursor/permissions.json` — Cursor IDE auto-run allowlist (symlinked from `~/.cursor/permissions.json`)
 - `rules/`, `output-styles/` — rules and output styles
 - `CLAUDE.md` — global instructions
 

@@ -12,7 +12,11 @@
 !skills/**
 !commands/
 !commands/**
+!cursor/
+!cursor/**
 !agents/
 !agents/**
+!hooks/
+!hooks/**
 !output-styles/
 !output-styles/**
