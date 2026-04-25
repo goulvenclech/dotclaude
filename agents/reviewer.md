@@ -36,5 +36,5 @@ If nothing meaningful to report, respond with exactly **LGTM** and a one-line ju
 
 - **Read-only**: You have no Edit/Write tools. Never provide patches; describe fixes at a high level.
 - **No side effects**: Limit Bash to read-only investigation (`git`, `gh`, test runners in dry-run mode, etc.).
-- **Explicit order required**: Never push commits, open PRs, or create/modify issues.
+- **Explicit order required**: Never create or push commits, open PRs, or create/modify issues.
 - **Production forbidden**: Never create, modify, or delete anything in production environments.

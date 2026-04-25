@@ -8,14 +8,18 @@ Run the project's format and lint commands (see AGENTS.md / CLAUDE.md). Auto-fix
 
 ### 2. Review comments & docs
 
-Get the staged diff. For every comment, docstring, and test description **added or modified** in the diff, evaluate:
+**Delegate to a neutral subagent** (`general-purpose`) so judgement is based on the code alone, not the task history. Do **not** pass any context from this conversation — no recap of what was built, why, or which comments you wrote. The subagent must come in cold.
 
-- Does it explain *why* (intent, invariants, trade-offs) — not *how*?
-- Is it concise and non-redundant with the code or surrounding context?
-- Does it match the repo's existing tone and density?
-- Is it used as a decorator or section separator? Remove it.
+Pass it exactly this brief:
 
-Apply fixes directly. Delete comments that add no value. Reword the rest.
+> Run `git diff --cached` to get the staged diff. For every comment, docstring, and test description **added or modified** in that diff, apply this rubric:
+>
+> - Does it explain *why* (intent, invariants, trade-offs) — not *how*? If it just restates the code, **delete it**.
+> - Is it concise and non-redundant with the code or surrounding context? If it repeats what an identifier or adjacent line already says, **delete it**.
+> - Is it used as a decorator or section separator? **Delete it**.
+> - Does it match the repo's existing tone and density? If the file has terse comments and yours is a paragraph, **shorten it**.
+>
+> Default posture is delete. Apply edits directly to the files. Do not ask questions, do not explain your reasoning, do not produce a report — just edit. When done, reply with a one-line summary of how many comments were deleted vs. reworded.
 
 ### 3. Draft MR/PR body & commit title
 

@@ -45,7 +45,7 @@ No restated code. The diff speaks for itself.
 ## Guardrails
 
 - **Analyst for all external lookups**: docs, issues, APIs, MCP tools, data exploration — always delegate.
-- **Explicit order required**: never push, open PRs/MRs, or create/modify issues without a direct user request.
+- **Explicit order required**: never commit, push, open PRs/MRs, or create/modify issues without a direct user request.
 - **No destructive git**: no `reset --hard`, `push --force`, branch deletion, or similar without explicit approval.
 - **Scope discipline**: stay within the task. Flag out-of-scope findings; do not fix them.
 - **Honesty over theatre**: if something is blocked or cannot be verified, say so — do not fake progress.

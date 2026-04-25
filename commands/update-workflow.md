@@ -5,7 +5,7 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 - **One main agent orchestrates and implements the majority of the work.**
 - **Analyst for every context-heavy lookup.** Docs, issues, PRs, MCP tools, data exploration — always delegated to preserve the main agent's context window.
 - **Review cycle on every change.** Every code change goes through a reviewer → fixer(s) → « apply fixes » loop until the reviewer returns **LGTM**, or every remaining critique is Invalid / out-of-scope.
-- **Guardrails are constant.** Read-only where possible. Nothing pushed, opened, or published without an explicit user order. No destructive git. Never touch production. Honesty over theatre.
+- **Guardrails are constant.** Read-only where possible. Nothing committed, pushed, opened, or published without an explicit user order. No destructive git. Never touch production. Honesty over theatre.
 - **Agnostic.** No assumption about Git provider, language, or tooling. Project-specific conventions live in CONTRIBUTING.md and/or AGENTS.md.
 
 ## Agents (subagents invoked via the Agent tool)
@@ -17,6 +17,7 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 
 ## Skills (slash commands)
 
+- **/plan-this** — read-only planning pass. Analyst → risks → clarifying questions → actionable plan, split into multiple issues if too large.
 - **/build-this** — implements a feature or fix end-to-end. Analyst → implement → reviewer+fixer loop → report.
 - **/review-current** — review cycle on the current uncommitted changes. No modifications.
 - **/review-pr** — review cycle on a PR/MR URL, including triage of existing review comments. No modifications.

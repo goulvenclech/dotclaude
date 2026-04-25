@@ -57,7 +57,7 @@ Approve / Approve with nits / Request changes / Needs discussion
 
 ## Guardrails
 
-- **Read-only**: no file edits, no pushes, no PR/MR comments, no thread resolutions.
+- **Read-only**: no file edits, no commits, no pushes, no PR/MR comments, no thread resolutions.
 - **Analyst for external lookups**: the PR, its threads, linked issues, and any referenced docs or MCP data all go through the analyst.
 - **Honest**: flag uncertainty; do not inflate severity.
 - **Concise**: one sentence per critique unless complexity demands more.
