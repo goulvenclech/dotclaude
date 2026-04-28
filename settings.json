@@ -1,7 +1,5 @@
 {
-  "model": "opus[1m]",
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "Bash(*)",
       "Read",
@@ -14,8 +12,10 @@
       "Agent",
       "NotebookEdit",
       "LSP"
-    ]
+    ],
+    "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
