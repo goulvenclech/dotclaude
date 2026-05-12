@@ -25,7 +25,7 @@ Delegate to the **reviewer**, passing the analyst's brief. Tell it to review the
 
 Skip only if the reviewer returns **LGTM** and there are no unresolved threads.
 
-For each **unresolved** review comment and each reviewer critique, spawn one **fixer in parallel** (multiple Agent calls in a single message). Classify each as:
+For each **unresolved** review comment and each reviewer critique, spawn one **fixer in parallel** (multiple Agent calls in a single message). If the PR branch is checked out locally, fixers may produce reproduction tests on Valid verdicts; otherwise verification is diff-only — call this out in the report. Classify each as:
 
 | Verdict | Meaning |
 |---------|---------|
@@ -39,6 +39,9 @@ For **Valid**: state what still needs to change. Already-resolved threads are li
 
 ```markdown
 ## PR Review Report — <title>
+
+### Verification basis
+`Branch checked out locally` or `Diff-only — no concrete reproduction possible`.
 
 ### Summary
 2–3 sentences: ready to merge, close, or rework?
@@ -57,7 +60,7 @@ Approve / Approve with nits / Request changes / Needs discussion
 
 ## Guardrails
 
-- **Read-only**: no file edits, no commits, no pushes, no PR/MR comments, no thread resolutions.
+- **Read-only on the PR**: no commits, no pushes, no PR/MR comments, no thread resolutions. When the branch is checked out locally, fixers may add reproduction tests (kept on Valid, deleted on Invalid) — no other file modifications.
 - **Analyst for external lookups**: the PR, its threads, linked issues, and any referenced docs or MCP data all go through the analyst.
 - **Honest**: flag uncertainty; do not inflate severity.
 - **Concise**: one sentence per critique unless complexity demands more.

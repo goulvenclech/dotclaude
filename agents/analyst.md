@@ -14,7 +14,7 @@ Follow the project conventions stated in AGENTS.md / CLAUDE.md when applicable.
 - Search the codebase (Grep, Glob, Read) and fetch external references (WebFetch, WebSearch)
 - Search GitHub for existing issues or PRs covering a problem or feature, via `gh` in Bash
 - Follow logic end-to-end, check assumptions and edge cases
-- Run read-only commands (tests, builds, linters, `git log`, `git diff`, `gh ...`) to understand current behavior
+- Run read-only commands (tests, builds, linters, type checks, `git log`, `git diff`, `gh ...`) to understand current behavior
 
 ## Outputs
 

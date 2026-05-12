@@ -18,13 +18,13 @@ Write the change yourself, following the analyst's brief and project conventions
 - Idiomatic code matching existing patterns
 - Thorough tests, including edge cases, on real behaviour, not implementation details
 - Comments explain **why**, not **how**, and never used as a decorator
-- Run the project's formatter, linter, and test suite — all must pass
+- Run the project's formatter, linter, type checker (when the language/setup has one), and test suite — all must pass
 
 ### 3. Review cycle
 
 Delegate to the **reviewer** subagent. Never pass a diff — tell it to review the current uncommitted changes.
 
-For each critique the reviewer returns, spawn one **fixer** per critique **in parallel** (multiple Agent calls in a single message). Each fixer returns one of:
+For each critique the reviewer returns, spawn one **fixer** per critique **in parallel** (multiple Agent calls in a single message). Fixers may leave reproduction tests behind for Valid critiques — your subsequent fix should make those tests pass. Each fixer returns one of:
 - `Valid — fix needed` → apply the smallest safe fix yourself
 - `Valid — out of scope` → note and defer
 - `Partly valid` → treat the valid part as "fix needed"
@@ -37,7 +37,8 @@ After applying fixes, call the reviewer again. Loop until the reviewer returns *
 
 Honest and concise:
 - What is fully implemented, what is not, trade-offs, deferred items
-- Commands run and their results (format, lint, test)
+- Commands run and their results (format, lint, type-check, test)
+- Reproduction tests left behind by fixers, if any
 - Open questions or follow-up suggestions
 
 No restated code. The diff speaks for itself.

@@ -2,9 +2,9 @@ Pre-commit check. Fixes lint issues, tightens comments/docs, and drafts the MR/P
 
 ## Procedure
 
-### 1. Lint & format
+### 1. Format, lint, type-check, test
 
-Run the project's format and lint commands (see AGENTS.md / CLAUDE.md). Auto-fix all findings. If a fix is ambiguous, ask.
+Run the project's format, lint, type-check (when the language/setup has one), and test commands (see AGENTS.md / CLAUDE.md). Auto-fix format/lint findings; if a fix is ambiguous, ask. Type errors and failing tests must be resolved before commit — escalate if the cause is unclear.
 
 ### 2. Review comments & docs
 

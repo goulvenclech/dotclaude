@@ -18,15 +18,15 @@ Delegate to the **reviewer** subagent. Tell it to review the current uncommitted
 
 If the reviewer returns **LGTM**, stop and report it.
 
-Otherwise, spawn one **fixer** per critique **in parallel** (multiple Agent calls in a single message). Each returns a verdict: Valid — fix needed / Valid — out of scope / Partly valid / Invalid / Ambiguous.
+Otherwise, spawn one **fixer** per critique **in parallel** (multiple Agent calls in a single message). Each returns a verdict: Valid — fix needed / Valid — out of scope / Partly valid / Invalid / Ambiguous. Fixers may leave a reproduction test on Valid verdicts — list these in the report.
 
 ### 4. Report
 
-Return the validated critiques grouped by verdict. For each valid critique include `file:line`, rationale, and the minimal fix direction (no patches). Surface Ambiguous items as questions for the user.
+Return the validated critiques grouped by verdict. For each valid critique include `file:line`, rationale, and the minimal fix direction (no patches). Surface Ambiguous items as questions for the user. List any reproduction tests left behind by fixers.
 
 ## Guardrails
 
-- **Read-only**: no file modifications, no commits, no pushes.
+- **Read-only on the code under review**: no commits, no pushes. Fixers may add reproduction tests (kept on Valid, deleted on Invalid) — no other file modifications.
 - **Analyst for external lookups**: docs, issues, MCP, data — always delegate.
 - **Signal over noise**: drop nits a formatter/linter already catches.
 - **Honesty**: flag uncertainty; do not inflate severity.
