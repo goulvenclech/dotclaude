@@ -13,7 +13,10 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 - **analyst** — read-only context gatherer. Codebase search, docs, GitHub/GitLab, MCP, read-only commands. Called before any non-trivial task, and any time the main agent would otherwise spend its own context on raw lookups.
 - **reviewer** — read-only. Critiques the current diff or a named branch against project conventions. Returns a ranked list or `LGTM`.
 - **fixer** — validates **one** reviewer critique per call. When the branch is checked out locally, attempts concrete reproduction via a focused test (kept on Valid, deleted on Invalid); otherwise diff-only. Returns a verdict: Valid — fix needed / Valid — out of scope / Partly valid / Invalid / Ambiguous.
-- **poet** — drafts written content (PR/MR body, Slack, review comment, release note, etc.) using repo templates when available. Returns a draft only; never publishes.
+
+## References
+
+- **`~/.claude/writing-style.md`** — writing-style guidelines (concision, British English, tone, format by surface). Pass as context (`@~/.claude/writing-style.md`) to any agent or skill that drafts user-facing text.
 
 ## Skills (slash commands)
 

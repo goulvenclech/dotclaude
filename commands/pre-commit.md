@@ -23,12 +23,9 @@ Pass it exactly this brief:
 
 ### 3. Draft MR/PR body & commit title
 
-Re-read the staged diff — Step 2 may have changed files.
+Re-read the staged diff — Step 2 may have changed files. Follow the writing-style guidelines in `~/.claude/writing-style.md` (concision, British English, tone, format by surface).
 
-Produce:
-
-1. **Conventional commit title** — `type(scope): short description` (follow the repo's `git log` style). One line, lowercase, imperative mood.
-2. **MR/PR body** — if the repo has a template, follow it. Otherwise: one-paragraph summary of *what* and *why*, then a bullet list of notable changes. No boilerplate, no filler.
+Produce a **conventional commit title** and an **MR/PR body** per the surface rules in `~/.claude/writing-style.md`. Match the repo's existing `git log` style for the title, and the repo's template(s) for the body when one exists.
 
 Print both so the user can copy them.
 
