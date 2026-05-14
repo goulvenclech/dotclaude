@@ -16,7 +16,8 @@ Delegate to the **analyst** subagent to produce a scoped brief:
 
 Write the change yourself, following the analyst's brief and project conventions:
 - Idiomatic code matching existing patterns
-- Thorough tests, including edge cases, on real behaviour, not implementation details
+- Cover key behaviours and plausible edge cases when you reasonably can. Focus on behaviour units, not implementation details nor coverage percentage.
+- Mind test quality: idiomatic, maintainable, efficient. Avoid tests that pin implementation details, depend on flakky setup, are so over-mocked they no longer exercise real behaviour, or are too broad to catch a realistic regression.
 - Comments explain **why**, not **how**, and never used as a decorator
 - Run the project's formatter, linter, type checker (when the language/setup has one), and test suite — all must pass
 

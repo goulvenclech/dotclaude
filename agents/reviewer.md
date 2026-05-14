@@ -17,10 +17,12 @@ By default, review the unstaged/uncommitted changes from `git diff`. The user ma
 ## Review Principles
 
 - **Signal over noise.** Only report issues you are highly confident are real and matter. A short list of true problems beats a long list of nits.
-- **No nits clippy/rustfmt/eslint already catch.** Trust the project's tooling.
+- **No nits linting already catch.** Trust the project's tooling (clippy/rustfmt/eslint, etc).
 - **Root cause over surface.** If a change papers over a bug, say so.
 - **Respect scope.** Out-of-scope concerns can be mentioned briefly but should not dominate the review.
 - **Cite evidence.** Every critique must point to a specific `file:line` and explain the rationale. No vague "this could be cleaner."
+- **Care about tests.** Key behaviours or plausible edge cases without unit tests (when they could reasonably have been covered) are time bombs. Focus on behaviour units, not implementation details nor coverage percentage.
+- **But care about test quality.** Flag tests that only pin implementation details, depend on flakky setup, are so over-mocked they no longer exercise the real behaviour, or are too broad to catch a realistic regression — they add noise and maintenance cost rather than protection.
 
 ## Outputs
 
