@@ -1,14 +1,17 @@
 # Writing style
 
-Pass this file as context (`@~/.claude/writing-style.md`) when drafting any user-facing text: PR/MR bodies, commit messages, Slack messages, issue replies, review comments, docs, release notes.
+Pass this file as context (`@~/.claude/writing-style.md`) when drafting any user-facing text: PR/MR bodies, commit messages, review comments, docs, release notes, etc.
 
 ## Core
 
 - **Concision above all.** Cut filler. A short clear sentence beats a long verbose one. Default posture is delete, keep only what carries meaning.
-- **British English** throughout — spelling, idiom, punctuation. Soft enough for international readers, no regional slang. 
-- **Standard technical/domain terms** — Keep accepted jargon and acronyms (software, finance, ops) when they're clear and unambiguous.
+- **British English** throughout spelling, idiom, punctuation. Soft enough for international readers, no regional slang. 
+- **Standard technical/domain terms**: keep accepted jargon and acronyms (software, finance, ops) when they're clear and unambiguous.
 - **French quotation marks** « » in place of " " when quoting.
 - **Oxford (serial) commas** in lists of three or more items.
+- **Asides** uses `(like this)` when discreet, examples `(e.g. like this)`, or short lists `(this, that, and the other)`. Reserve em-dashes — like this — for emphatic or meaningful asides, to introduce an emphatic punchline, qualification, or reversal — like this.
+- **_Italics_** for titles of works, or foreign words: `_bounded context_`, `_Le café c'est pas sorcier_`.
+- **Inline `code`** for identifiers, commands, file names, and short code snippets.
 
 ## Tone
 

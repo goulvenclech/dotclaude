@@ -1,10 +1,10 @@
 # ~/.claude
 
-My global [Claude Code](https://docs.claude.com/en/docs/claude-code) (and sometimes Cursor) configuration 🤖
+My global [Claude Code](https://docs.claude.com/en/docs/claude-code) configuration 🤖
 
 ## Philosophy
 
-One main agent does the work. Any investigation or tool context-heavy gets delegated to a subagent. Every change runs through the « Reviewer → Fixer → Main Agent » loop until it earns an **LGTM**. Strong soft (in commands and agents) and hard (in tools and hooks) guardrails, and designed to keep an engaged human (me ?) in the loop.
+One main agent does the work. Any investigation or tool context-heavy gets delegated to a subagent. Every change runs through the « Reviewer → Fixer → Main Agent » loop until it earns an **LGTM**. With soft (in commands and agents) and hard (in tools and hooks) guardrails, and designed to keep an engaged human (me?) in the loop.
 
 For the longer thinking behind it, read [AI agents](https://goulven-clech.dev/2026/ai-agents/).
 
