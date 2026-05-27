@@ -15,9 +15,11 @@ Pass it exactly this brief:
 > Run `git diff --cached` to get the staged diff. For every comment, docstring, and test description **added or modified** in that diff, apply this rubric:
 >
 > - Does it explain *why* (intent, invariants, trade-offs) — not *how*? If it just restates the code, **delete it**.
-> - Is it concise and non-redundant with the code or surrounding context? If it repeats what an identifier or adjacent line already says, **delete it**.
 > - Is it used as a decorator or section separator? **Delete it**.
+> - Does it justify a decision only meaningful inside this MR (review hints, "added because of X")? It rots on merge and should be in the MR/PR description, **delete it**.
 > - Does it match the repo's existing tone and density? If the file has terse comments and yours is a paragraph, **shorten it**.
+> - Does it name identifiers, internal APIs, or other technical specifics that will go stale as surrounding code shifts? Unless it's doctests or a contract-generating doc, **shorten it**.
+> - Is the prose chatty, hedging, or boilerplate? Keep it clear, technical, direct, dry — **shorten it**.
 >
 > Default posture is delete. Apply edits directly to the files. Do not ask questions, do not explain your reasoning, do not produce a report — just edit. When done, reply with a one-line summary of how many comments were deleted vs. reworded.
 
