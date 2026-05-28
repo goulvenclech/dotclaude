@@ -1,9 +1,9 @@
 {
   // Cursor IDE auto-run allowlist.
   // Doc: https://cursor.com/docs/reference/permissions
-  // Active uniquement si Auto-Run = "Run in Sandbox" ou "Run Everything"
-  // (Cursor Settings > Agents > Auto-Run). Recommandé: Run in Sandbox.
-  // Préfixes shell case-sensitive. server:tool case-insensitive avec wildcards *.
+  // Active only when Auto-Run = "Run in Sandbox" or "Run Everything"
+  // (Cursor Settings > Agents > Auto-Run). Recommended: Run in Sandbox.
+  // Shell prefixes are case-sensitive. server:tool is case-insensitive with * wildcards.
 
   "terminalAllowlist": [
     // --- Filesystem read-only ---
@@ -223,7 +223,7 @@
     "node:-e*",
     "tsc:--noEmit*",
 
-    // --- Infra: Terraform / Terragrunt (dry-run uniquement) ---
+    // --- Infra: Terraform / Terragrunt (dry-run only) ---
     "terraform version",
     "terraform validate",
     "terraform init:-backend=false*",
@@ -260,7 +260,7 @@
     "curl:--location*",
     "wget:--spider*",
 
-    // --- Skills / divers locaux ---
+    // --- Skills / misc local ---
     "make help",
     "make:list*",
     "docker ps",
@@ -280,39 +280,39 @@
   ],
 
   "mcpAllowlist": [
-    // --- Linear (lecture) ---
+    // --- Linear (read) ---
     "*linear*:list_*",
     "*linear*:get_*",
     "*linear*:search_*",
     "*linear*:extract_images",
 
-    // --- GitLab (lecture / recherche) ---
+    // --- GitLab (read / search) ---
     "*gitlab*:get_*",
     "*gitlab*:search",
     "*gitlab*:search_labels",
     "*gitlab*:semantic_code_search",
     "*gitlab*:get_mcp_server_version",
 
-    // --- Notion (lecture / requêtes) ---
+    // --- Notion (read / queries) ---
     "*notion*:notion-search",
     "*notion*:notion-fetch",
     "*notion*:notion-query-*",
     "*notion*:notion-get-*",
 
-    // --- Slack (lecture / recherche) ---
+    // --- Slack (read / search) ---
     "*slack*:slack_read_*",
     "*slack*:slack_search_*",
 
-    // --- Sentry (auth uniquement, le reste à la demande) ---
+    // --- Sentry (auth only, the rest on demand) ---
     "*sentry*:mcp_auth",
 
-    // --- Honeycomb (entièrement lecture par nature) ---
+    // --- Honeycomb (entirely read-only by nature) ---
     "Honeycomb:*",
 
-    // --- Aikido Security (analyse read-only) ---
+    // --- Aikido Security (read-only analysis) ---
     "AikidoSecurityMCP:*",
 
-    // --- Cursor IDE Browser (inspection seule) ---
+    // --- Cursor IDE Browser (inspection only) ---
     "cursor-ide-browser:browser_snapshot",
     "cursor-ide-browser:browser_take_screenshot",
     "cursor-ide-browser:browser_console_messages",

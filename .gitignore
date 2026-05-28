@@ -1,7 +1,7 @@
-# Tout ignorer par défaut
+# Ignore everything by default
 *
 
-# Puis allowlist ce qu'on versionne
+# Then allowlist what we track
 !.gitignore
 !README.md
 !writing-style.md
@@ -22,3 +22,7 @@
 !hooks/**
 !output-styles/
 !output-styles/**
+
+# Must stay below the allowlist — last matching pattern wins
+.DS_Store
+**/.DS_Store

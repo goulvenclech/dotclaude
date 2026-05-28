@@ -21,6 +21,7 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 ## Skills (slash commands)
 
 - **/plan-this** — read-only planning pass. Analyst → risks → clarifying questions → actionable plan, split into multiple issues if too large.
+- **/investigate** — read-only deep-dive on a suspected bug or refactor idea before starting. Analyst → confirm candidate findings → risks → fixer-validates each → findings report + open questions. No fix, no plan.
 - **/build-this** — implements a feature or fix end-to-end. Analyst → implement → reviewer+fixer loop → report.
 - **/review-current** — review cycle on the current uncommitted changes. No modifications.
 - **/review-pr** — review cycle on a PR/MR URL, including triage of existing review comments. No modifications.
