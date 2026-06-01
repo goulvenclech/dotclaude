@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "default",
     "allow": [
       "Bash(*)",
       "Read",
@@ -12,8 +13,7 @@
       "Agent",
       "NotebookEdit",
       "LSP"
-    ],
-    "defaultMode": "auto"
+    ]
   },
   "model": "opus[1m]",
   "hooks": {
