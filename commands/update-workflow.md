@@ -25,7 +25,7 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 - **/build-this** — implements a feature or fix end-to-end. Analyst → implement → reviewer+fixer loop → report.
 - **/review-current** — review cycle on the current uncommitted changes. No modifications.
 - **/review-pr** — review cycle on a PR/MR URL, including triage of existing review comments. No modifications.
-- **/pre-commit** — lint, tighten comments, draft MR/PR body and commit title for the staged diff.
+- **/pre-commit** — lint, tighten comments, draft or update the MR/PR body and commit title for the staged diff.
 - **/triage-perm** — triage one command that just prompted for permission: add to allow-list, leave on ask, or block via hook.
 - **/update-workflow** — this skill. Briefs the workflow and keeps the definitions above in sync.
 

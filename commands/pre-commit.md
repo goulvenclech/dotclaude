@@ -1,4 +1,4 @@
-Pre-commit check. Fixes lint issues, tightens comments/docs, and drafts the MR/PR body and commit title for the staged diff.
+Pre-commit check. Fixes lint issues, tightens comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff.
 
 ## Procedure
 
@@ -23,13 +23,23 @@ Pass it exactly this brief:
 >
 > Default posture is delete. Apply edits directly to the files. Do not ask questions, do not explain your reasoning, do not produce a report — just edit. When done, reply with a one-line summary of how many comments were deleted vs. reworded.
 
-### 3. Draft MR/PR body & commit title
+### 3. Draft or update the MR/PR body & commit title
 
 Re-read the staged diff — Step 2 may have changed files. Follow the writing-style guidelines in `~/.claude/writing-style.md` (concision, British English, tone, format by surface).
 
-Produce a **conventional commit title** and an **MR/PR body** per the surface rules in `~/.claude/writing-style.md`. Match the repo's existing `git log` style for the title, and the repo's template(s) for the body when one exists.
+**Check whether the current branch already has an open MR/PR** — delegate the lookup to the **analyst** (return the existing body verbatim, plus any linked issue).
 
-Print both so the user can copy them.
+- **An open MR/PR exists** → do **not** write a new body. Treat the existing body as source of truth and propose only the smallest targeted edits, and only **if necessary** (when the staged changes have made it stale, wrong, or really incomplete).
+- **No open MR/PR** → draft a fresh body following the repo's template(s) when one exists.
+
+Whichever path:
+
+- **Never simplify the template.** Keep every section the repo's template provides, in order, including ones left blank or marked N/A.
+- **Keep the free description short and meaningful.** Introduce the reviewer to the choices made and any gotchas or quirks worth knowing. Do not restate a linked issue's details, and do not narrate the implementation. The shortest text that orients a reviewer wins.
+
+Also produce a **conventional commit title** matching the repo's existing `git log` style.
+
+Print the commit title and the body (or the proposed body edits) so the user can copy them.
 
 ## Guardrails
 

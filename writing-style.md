@@ -21,7 +21,7 @@ Pass this file as context (`@~/.claude/writing-style.md`) when drafting any user
 
 ## Format by surface
 
-- **PR/MR body** — one-paragraph *what* and *why*, then follow the repo's template(s). Default to a bullet list of notable changes if no template exists.
+- **PR/MR body** — never simplify the repo's template, keep every section it provides. The free description is the shortest text that orients a reviewer, without restating the obvious, the linked issue, nor details of the implementation.
 - **Commit title** — `type(scope): short description`. Lowercase, imperative mood, one line.
 - **Commit body** — imperative mood; blank line after the title; wrap around 72 chars.
 - **Review comment** — point to `file:line`, state the concern, suggest the smallest safe fix. No patches.
