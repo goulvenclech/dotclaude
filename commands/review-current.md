@@ -1,4 +1,6 @@
-Review the uncommitted changes in the current working tree. Read-only — nothing is modified.
+---
+description: Review the uncommitted changes in the current working tree.
+---
 
 ## Workflow
 

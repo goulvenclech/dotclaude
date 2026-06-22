@@ -1,4 +1,6 @@
-Implement a feature or fix end-to-end. Accepts an issue/PR URL, a ticket reference, or a free-form task description.
+---
+description: Implement a feature or fix end-to-end.
+---
 
 ## Workflow
 

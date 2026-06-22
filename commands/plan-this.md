@@ -1,4 +1,6 @@
-Plan a feature or fix before any code is written. Accepts an issue/PR URL, a ticket reference, or a free-form task description. Read-only — nothing is modified.
+---
+description: Plan a feature or fix before any code is written.
+---
 
 ## Workflow
 

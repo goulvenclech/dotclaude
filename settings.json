@@ -33,5 +33,6 @@
     "github@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "agentPushNotifEnabled": true
 }

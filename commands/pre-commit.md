@@ -1,4 +1,6 @@
-Pre-commit check. Fixes lint issues, tightens comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff.
+---
+description: Pre-commit check. Fixes lint issues, tightens comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff.
+---
 
 ## Procedure
 

@@ -1,63 +1,59 @@
-Investigate a bug or a refactor idea in depth before starting work. Accepts an issue/PR URL, a ticket reference, or a free-form description of the suspected problem. Read-only — confirms findings without fixing them.
+---
+description: Investigate a bug, a refactor, an unfamiliar domain, or a pre-feature question in depth.
+---
 
 ## Workflow
 
-### 1. Gather context (Analysts)
+A sustained loop, not a pipeline. Investigating is **your** job as the main agent. You keep a living **findings ledger** and work it until confidence stops moving and your tools are spent. Analysts do the bulk lookups, and exploit every available MCP, so your context stays clean for reasoning, while fixers confirm or refute findings — strongest by a focused reproduction test, by close analysis where that is not possible or apt.
 
-Investigating is **your** job — the main agent. Analysts only do bulk lookups so your context stays clean for reasoning.
+### The findings ledger
 
-Spawn **multiple analyst subagents in parallel** (multiple Agent calls in a single message) for independent lookups. Typical splits:
-- One to fetch the issue/PR and any linked tickets or reports (via `gh`, `glab`, or equivalent)
-- One to follow the suspect logic end-to-end: entry points, callers, callees, data flow, and the data actually returned at each hop
-- One to surface prior art: similar past bugs or refactors (`git log`), related issues/PRs, conventions (AGENTS.md / CLAUDE.md), invariants enforced elsewhere
-- More as needed for external docs, MCP data, or logs
+Your durable working memory. Maintain it as a markdown file at `~/.claude/investigations/<slug>.md` (create the directory if needed; `<slug>` is a short kebab-case name for the topic), so the loop can run long without bloating your context. Seed it from the prompt, grow it as you probe, and let *it* — not a fixed step list — drive what you do next.
 
-**Every doc read, issue/PR fetch, MCP call, test run, or data exploration goes through an analyst** — never spend your own context on raw lookups, even mid-investigation. If you need more context later, spawn more analysts. Analysts report observed behaviour (run existing tests, read logs) but write nothing.
+One row per **finding** — a falsifiable claim, a domain fact, a risk, or a design question — each carrying:
+- **Claim** — one line, tied to a `file:line` or a named source (issue, MCP record, log)
+- **Type** — bug · domain-fact · risk · design-question
+- **Confidence** — earned by evidence, never assumed:
+  - **Confirmed** — a reproduction that behaves as predicted, or unambiguous data from an authoritative source
+  - **Likely** — code and data converge, but nothing reproduces it directly
+  - **Possible** — one plausible signal, not yet probed hard
+  - **Refuted** — actively disproven; keep one line so it is not re-opened
+  - **Discarded** — irrelevant or subsumed; keep one line why
+- **Evidence** — the TLDR that earns the confidence: reproduction-test path, MCP data, code citation, command output
+- **Next probe** — what would move the confidence, or `blocked — needs <tool/access>` when nothing you have can
 
-### 2. Form candidate findings
+A design-question carries no tool-driven confidence; it is for the user.
 
-**You** consolidate the analysts' briefs into a ranked list of **falsifiable claims**, each tied to a `file:line`:
-- For a **bug**: where the logic breaks, the bad data path, the violated invariant
-- For a **refactor**: hidden coupling, callers that would break, side-channel invariants, migration or ordering hazards
+### The loop
 
-Each candidate is a *hypothesis to confirm or refute* — not yet a fact. **Do not invent findings**: every one must trace to the code or the analysts' data. If a hypothesis is plausible but unverified, keep it as a candidate for Step 4 rather than asserting it.
+Repeat until you converge:
+1. **Pick the weak point** — the finding whose confidence most needs moving, or a gap with no finding yet. The ledger chooses, not a script.
+2. **Probe it**, spawning independent work in parallel (multiple Agent calls in one message):
+   - **Analysts** for bulk lookups — codebase traversal, `git log`, issues/PRs, logs, docs (internal and dependency/vendor, wherever accessible, relevant, and current), and every relevant **MCP** (Notion, Linear, Honeycomb, Sentry, Snowflake, trackers, dashboards, etc), pulled to the max
+   - **Fixers**, one per claim to validate — strongest by a focused reproduction test where the claim is replicable (kept on a confirming verdict, deleted otherwise), by close analysis where it is not
+3. **Update the ledger** — raise, lower, or discard confidence; rewrite each evidence TLDR; add findings the probe surfaced; flag design-questions; mark `blocked` where a tool or access is missing.
+4. **Decide** — if any confidence can still move, loop; otherwise stop.
 
-### 3. Surface risks & gotchas
+### When to stop
 
-Optional. List **only** risks concretely supported by the code or the issue:
-- Concurrency, ordering, idempotency, migration, or backwards-compat hazards in the touched paths
-- Hidden coupling: callers that would silently break, invariants enforced elsewhere
-- External dependencies (APIs, MCP, infra) that may be unreliable or rate-limited
-- Known-bad patterns the project already has guardrails against
+Converge when every finding is **Confirmed**, **Refuted/Discarded**, **blocked** on a clearly-named missing tool or access, or a **design-question** for the user — and a full pass surfaces nothing new. Push to the end of what your tools allow; do not settle at the first plausible answer. If a design or policy decision blocks further analysis, surface it to the user mid-loop and carry on with the parts that don't depend on it.
 
-**Do not invent risks.** If a hazard is plausible but unverified, spawn another analyst to verify before listing it. If still unverified, drop it.
+### Report
 
-### 4. Validate each finding (Fixer × N)
+Write the most useful, honest report you can. Shaped for the reader, not to a fixed template, but it should:
+- lead with a TLDR with what the investigation establishes, and how much to trust it
+- present the findings clearly and honestly by confidence — a **Likely** is not a **Confirmed** — each with its evidence and any reproduction test behind it
+- separate genuine **design questions** for the user from what the tools can settle (do not invent ambiguity)
+- name what you could not settle, and the exact tool, credential, or access that would have closed it
 
-Spawn one **fixer per candidate finding in parallel** (multiple Agent calls in a single message). Frame each as a critique = its `file:line` + the claim. When the code is checked out locally and the claim is replicable, the fixer writes a focused reproduction test (kept on a confirmed verdict, deleted otherwise) — this is the "write a test to confirm the problem" step. Map each fixer's verdict:
-- `Valid — fix needed` → finding **confirmed**, real problem
-- `Valid — out of scope` → confirmed, but belongs to a separate task
-- `Partly valid` → confirmed in part; record which part
-- `Invalid` → **refuted**; drop it
-- `Ambiguous` → needs user input; becomes an open question
-
-### 5. Report + open questions
-
-Honest and concise:
-- **Confirmed findings**: each with `file:line`, evidence, root cause if found, and the reproduction-test path left behind by the fixer
-- **Refuted / unconfirmed**: one line each, so you know what was ruled out
-- **Risks & gotchas** to watch when the work starts
-- **Open questions**: genuinely unspecified decisions for the user (do not invent ambiguity)
-- **Suggested next step**: `/plan-this` or `/build-this`
-
-Stop here — investigate does not plan the fix or implement it.
+Stop here. Your job is not to plan the fix or implement it.
 
 ## Guardrails
 
-- **Read-only**: no fixes, no commits, no pushes, no issue/PR creation. The only writes are fixer reproduction tests (kept on confirmed verdicts, deleted otherwise).
-- **Analysts for all external lookups**: docs, issues, APIs, MCP tools, test runs, data exploration — always delegate, in parallel when independent. Judgement stays with you.
-- **No invention**: every finding, risk, and question must trace back to the code or the prompt. When in doubt, validate it via a fixer or drop it.
-- **Confirm, don't assert**: a hypothesis is not a finding until a fixer validates it or you can cite direct evidence.
+- **Read-only on the repo and the world**: no fixes, commits, pushes, issue/PR creation, or MCP writes. The only writes are the findings ledger (a working note outside the repo) and fixer reproduction tests (kept on confirming verdicts, deleted otherwise).
+- **Subagents for all lookups**: codebase traversal, docs, issues, APIs, MCP, test runs, data exploration — always delegate, in parallel when independent. Exploit every available MCP. Judgement stays with you.
+- **Confirm, don't assert**: confidence only rises on evidence. **Confirmed** demands a reproduction or unambiguous data.
+- **Honesty over completeness**: when your tools cannot settle a point, name the gap. Never paper over it with a confident-sounding guess.
 - **Production forbidden**: never create, modify, or delete anything in production environments.
 
 ## Task

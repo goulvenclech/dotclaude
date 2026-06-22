@@ -1,4 +1,6 @@
-Brief tour of the agentic workflow, and a guided update pass to keep agents and skills coherent with each other.
+---
+description: Brief tour of the agentic workflow, and a guided update pass to keep agents and skills coherent with each other.
+---
 
 ## Philosophy
 
@@ -10,7 +12,7 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 
 ## Agents (subagents invoked via the Agent tool)
 
-- **analyst** — read-only context gatherer. Codebase search, docs, GitHub/GitLab, MCP, read-only commands. Called before any non-trivial task, and any time the main agent would otherwise spend its own context on raw lookups.
+- **analyst** — read-only context gatherer. Inherits all tools (MCP included) but read-only by mandate. Codebase search, docs, GitHub/GitLab, MCP, read-only commands. Called before any non-trivial task, and any time the main agent would otherwise spend its own context on raw lookups.
 - **reviewer** — read-only. Critiques the current diff or a named branch against project conventions. Returns a ranked list or `LGTM`.
 - **fixer** — validates **one** reviewer critique per call. When the branch is checked out locally, attempts concrete reproduction via a focused test (kept on Valid, deleted on Invalid); otherwise diff-only. Returns a verdict: Valid — fix needed / Valid — out of scope / Partly valid / Invalid / Ambiguous.
 
@@ -21,7 +23,7 @@ Brief tour of the agentic workflow, and a guided update pass to keep agents and 
 ## Skills (slash commands)
 
 - **/plan-this** — read-only planning pass. Analyst → risks → clarifying questions → actionable plan, split into multiple issues if too large.
-- **/investigate** — read-only deep-dive on a suspected bug or refactor idea before starting. Analyst → confirm candidate findings → risks → fixer-validates each → findings report + open questions. No fix, no plan.
+- **/investigate** — read-only loop on a bug, refactor, domain, or pre-feature question. Findings ledger (claim · confidence · evidence) → analysts + fixers move confidence until tools are spent → report by confidence, with design questions and tool gaps. No fix, no plan.
 - **/build-this** — implements a feature or fix end-to-end. Analyst → implement → reviewer+fixer loop → report.
 - **/review-current** — review cycle on the current uncommitted changes. No modifications.
 - **/review-pr** — review cycle on a PR/MR URL, including triage of existing review comments. No modifications.

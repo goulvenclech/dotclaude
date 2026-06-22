@@ -1,4 +1,6 @@
-Read-only review cycle on a pull/merge request. Produces new critiques and triage of existing review comments. Nothing is modified.
+---
+description: Read-only review cycle on a pull/merge request.
+---
 
 ## Inputs
 
