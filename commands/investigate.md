@@ -8,7 +8,11 @@ A sustained loop, not a pipeline. Investigating is **your** job as the main agen
 
 ### The findings ledger
 
-Your durable working memory. Maintain it as a markdown file at `~/.claude/investigations/<slug>.md` (create the directory if needed; `<slug>` is a short kebab-case name for the topic), so the loop can run long without bloating your context. Seed it from the prompt, grow it as you probe, and let *it* — not a fixed step list — drive what you do next.
+Your durable working memory. Maintain it as a markdown file under a per-project folder: `~/.claude/investigations/<project>/<slug>.md` (create the folder if needed; `<project>` is the project name — `remote`, `sampo`, `satteri`, …). The `<slug>` is concise kebab-case but packs the keywords you would search on to find it again — domain, main module touched, ticket id, etc. (e.g. `audit-trail-missing-source`, `npm-oidc-trusted-publishers`). This lets the loop run long without bloating your context. Carry a **Last updated** date at the top. Seed it from the prompt, grow it as you probe, and let *it* — not a fixed step list — drive what you do next.
+
+Before seeding, **look for prior art** in the project's folder (start from its index, below) for an existing ledger on the same subject. If one is recent — under a month old — and on-topic, resume it instead of starting fresh: re-verify each finding still holds against current code and data before trusting its confidence, then refresh the **Last updated** date. Link ledgers from a related thread with `[[slug]]` wherever it helps the reader follow the trail.
+
+Keep a per-project index at `~/.claude/investigations/<project>/INDEX.md` — one line per ledger (`slug` · one-line topic · Last updated) — and create or update its entry as you go, so prior art stays findable.
 
 One row per **finding** — a falsifiable claim, a domain fact, a risk, or a design question — each carrying:
 - **Claim** — one line, tied to a `file:line` or a named source (issue, MCP record, log)
@@ -50,7 +54,7 @@ Stop here. Your job is not to plan the fix or implement it.
 
 ## Guardrails
 
-- **Read-only on the repo and the world**: no fixes, commits, pushes, issue/PR creation, or MCP writes. The only writes are the findings ledger (a working note outside the repo) and fixer reproduction tests (kept on confirming verdicts, deleted otherwise).
+- **Read-only on the repo and the world**: no fixes, commits, pushes, issue/PR creation, or MCP writes. The only writes are the findings ledger and its index (working notes outside the repo) and fixer reproduction tests (kept on confirming verdicts, deleted otherwise).
 - **Subagents for all lookups**: codebase traversal, docs, issues, APIs, MCP, test runs, data exploration — always delegate, in parallel when independent. Exploit every available MCP. Judgement stays with you.
 - **Confirm, don't assert**: confidence only rises on evidence. **Confirmed** demands a reproduction or unambiguous data.
 - **Honesty over completeness**: when your tools cannot settle a point, name the gap. Never paper over it with a confident-sounding guess.
