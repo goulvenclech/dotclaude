@@ -45,6 +45,6 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "agentPushNotifEnabled": true
 }

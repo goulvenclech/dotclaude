@@ -1,5 +1,5 @@
 ---
-description: Pre-commit check. Fixes lint issues, tightens comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff.
+description: Pre-commit check. Fixes lint issues, prunes comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff.
 ---
 
 ## Procedure
@@ -14,16 +14,15 @@ Run the project's format, lint, type-check (when the language/setup has one), an
 
 Pass it exactly this brief:
 
-> Run `git diff --cached` to get the staged diff. For every comment, docstring, and test description **added or modified** in that diff, apply this rubric:
+> Run `git diff --cached` to get the staged diff. A comment, docstring, or test description **added or modified** in that diff earns its place only if it tells the reader something the code, names, types, and tests don't already — a constraint, an invariant, a non-obvious *why*. Everything else, delete:
 >
-> - Does it explain *why* (intent, invariants, trade-offs) — not *how*? If it just restates the code, **delete it**.
-> - Is it used as a decorator or section separator? **Delete it**.
-> - Does it justify a decision only meaningful inside this MR (review hints, "added because of X")? It rots on merge and should be in the MR/PR description, **delete it**.
-> - Does it match the repo's existing tone and density? If the file has terse comments and yours is a paragraph, **shorten it**.
-> - Does it name identifiers, internal APIs, or other technical specifics that will go stale as surrounding code shifts? Unless it's doctests or a contract-generating doc, **shorten it**.
-> - Is the prose chatty, hedging, or boilerplate? Keep it clear, technical, direct, dry — **shorten it**.
+> - Restates what the code does, or expected behaviour the tests already cover (or should cover).
+> - Changelog narration ("was", "previously", "now handles", "added because") that's git history and the MR body's job, it rots on merge.
+> - Explains a design decision that doesn't change how the reader uses or modifies the code.
+> - Decorator, section separator, or review hint.
+> - Names identifiers or internal specifics that go stale as surrounding code shifts (doctests and contract-generating docs excepted).
 >
-> Default posture is delete. Apply edits directly to the files. Do not ask questions, do not explain your reasoning, do not produce a report — just edit. When done, reply with a one-line summary of how many comments were deleted vs. reworded.
+> Comments left should be as short and dry as possible, matching the file's existing tone and density. If a comment needs heavy rewording to survive, delete it instead. Apply edits directly to the files. Do not ask questions, do not explain your reasoning, do not produce a report —> just edit. When done, reply with a one-line count: deleted vs. shortened.
 
 ### 3. Draft or update the MR/PR body & commit title
 
