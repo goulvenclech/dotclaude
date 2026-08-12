@@ -37,7 +37,7 @@ Re-read the staged diff — Step 2 may have changed files. Follow the writing-st
 Whichever path:
 
 - **Never simplify the template.** Keep every section the repo's template provides, in order, including ones left blank or marked N/A.
-- **Keep the free description short and meaningful.** Introduce the reviewer to the choices made and any gotchas or quirks worth knowing. Do not restate a linked issue's details, and do not narrate the implementation. The shortest text that orients a reviewer wins.
+- **Keep the free description short**, usually one or two sentences on what the change accomplishes. Cut anything a reviewer infers from the diff: no implementation narration, no list of decisions, no inventory of changes, no restating the linked issue. Flag a gotcha only if one genuinely exists, something surprising the code doesn't reveal. An expected, logical decision is not a gotcha, so don't manufacture one.
 
 Also produce a **conventional commit title** matching the repo's existing `git log` style.
 

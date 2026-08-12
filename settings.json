@@ -1,4 +1,7 @@
 {
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(*)",
@@ -13,7 +16,7 @@
       "NotebookEdit",
       "LSP"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "model": "opus[1m]",
   "hooks": {
@@ -31,7 +34,16 @@
   },
   "enabledPlugins": {
     "github@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "dexter-lsp@dexter": true
+  },
+  "extraKnownMarketplaces": {
+    "dexter": {
+      "source": {
+        "source": "github",
+        "repo": "remoteoss/dexter"
+      }
+    }
   },
   "effortLevel": "high",
   "agentPushNotifEnabled": true

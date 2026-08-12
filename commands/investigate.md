@@ -12,7 +12,7 @@ Your durable working memory. Maintain it as a markdown file under a per-project 
 
 Before seeding, **look for prior art** in the project's folder (start from its index, below) for an existing ledger on the same subject. If one is recent — under a month old — and on-topic, resume it instead of starting fresh: re-verify each finding still holds against current code and data before trusting its confidence, then refresh the **Last updated** date. Link ledgers from a related thread with `[[slug]]` wherever it helps the reader follow the trail.
 
-Keep a per-project index at `~/.claude/investigations/<project>/INDEX.md` — one line per ledger (`slug` · one-line topic · Last updated) — and create or update its entry as you go, so prior art stays findable.
+Keep a per-project index at `~/.claude/investigations/<project>/INDEX.md` — one line per ledger (`slug` · description · Last updated) — and create or update its entry as you go, so prior art stays findable. The description is **strictly under 250 characters**: the idea of the investigation plus the keywords a future investigation would search to judge relevance. No state that goes stale immediately (branch status, current confidence, next steps).
 
 One row per **finding** — a falsifiable claim, a domain fact, a risk, or a design question — each carrying:
 - **Claim** — one line, tied to a `file:line` or a named source (issue, MCP record, log)
