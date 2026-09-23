@@ -1,5 +1,5 @@
 ---
-description: Pre-commit check. Fixes lint issues, prunes comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff.
+description: Pre-commit check. Fixes lint issues, prunes comments/docs, and drafts or updates the MR/PR body and commit title for the staged diff, and prints the commit/push command.
 ---
 
 ## Procedure
@@ -28,24 +28,33 @@ Pass it exactly this brief:
 
 Re-read the staged diff — Step 2 may have changed files. Follow the writing-style guidelines in `~/.claude/writing-style.md` (concision, British English, tone, format by surface).
 
-**Check whether the current branch already has an open MR/PR** — delegate the lookup to the **analyst** (return the existing body verbatim, plus any linked issue).
+**Analyst call** returning: any open MR/PR on this branch (body verbatim, plus linked issue), the last few merged bodies the user authored in this repo, and recent `git log` titles.
 
-- **An open MR/PR exists** → do **not** write a new body. Treat the existing body as source of truth and propose only the smallest targeted edits, and only **if necessary** (when the staged changes have made it stale, wrong, or really incomplete).
-- **No open MR/PR** → draft a fresh body following the repo's template(s) when one exists.
+- **An open MR/PR exists** → do **not** write a new body. Treat it as source of truth and propose only the smallest targeted edits, and only **if necessary** (when the staged changes have made it stale, wrong, or really incomplete).
+- **None** → draft a fresh body following the repo's template when one exists.
 
 Whichever path:
+- **Never simplify a template**: every section it provides, in order, blank or N/A ones included.
+**Same delete-first test as Step 2**, a line earns its place only if not obvious from the diff, the title, or the linked issue. Cut implementation narration, inventories of changed files, decision logs, restatements of the issue, and every cosmetic nit. The free description is one or two sentences on what the change accomplishes. A gotcha goes in only if genuinely surprising — an expected decision is not one, don't manufacture one.
 
-- **Never simplify the template.** Keep every section the repo's template provides, in order, including ones left blank or marked N/A.
-- **Keep the free description short**, usually one or two sentences on what the change accomplishes. Cut anything a reviewer infers from the diff: no implementation narration, no list of decisions, no inventory of changes, no restating the linked issue. Flag a gotcha only if one genuinely exists, something surprising the code doesn't reveal. An expected, logical decision is not a gotcha, so don't manufacture one.
-
-Also produce a **conventional commit title** matching the repo's existing `git log` style.
+Then a **conventional commit title** in the sampled `git log` style.
 
 Print the commit title and the body (or the proposed body edits) so the user can copy them.
+
+### 4. Commit & push command
+
+One fenced `bash` block per repo or worktree holding staged changes, ready to run as-is:
+
+```bash
+cd /absolute/path/to/worktree && git commit -m "<title>" && git push -u origin <branch>
+```
+
+Absolute path so it runs from anywhere, the branch actually checked out there, and the title alone — no body, no co-author trailer.
 
 ## Guardrails
 
 - **Analyst for external lookups**: if the diff refers to an issue, external doc, or MCP data, delegate the fetch to the **analyst** rather than loading it into your own context.
-- **No commits, no pushes**: you only prepare artefacts; never run `git commit` or publish anything.
+- **No commits, no pushes**: you prepare artefacts and print the command; never run it yourself.
 - **Scope discipline**: do not fix unrelated code or expand the diff.
 - **Honesty**: if something is unclear (ambiguous lint fix, unknown convention), ask rather than guess.
 

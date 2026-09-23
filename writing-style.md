@@ -5,6 +5,7 @@ Pass this file as context (`@~/.claude/writing-style.md`) when drafting any user
 ## Core
 
 - **Concision above all.** Cut filler. A short clear sentence beats a long verbose one. Default posture is delete, keep only what carries meaning.
+- **Sample the corpus.** Where the surface has precedent (recent merged MR/PR bodies, `git log`, sibling docs) read a few and match their length and register.
 - **British English** throughout spelling, idiom, punctuation. Soft enough for international readers, no regional slang. 
 - **Standard technical/domain terms**: keep accepted jargon and acronyms (software, finance, ops) when they're clear and unambiguous.
 - **French quotation marks** « » in place of " " when quoting.
