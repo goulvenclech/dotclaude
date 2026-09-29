@@ -49,12 +49,13 @@ One fenced `bash` block per repo or worktree holding staged changes, ready to ru
 cd /absolute/path/to/worktree && git commit -m "<title>" && git push -u origin <branch>
 ```
 
-Absolute path so it runs from anywhere, the branch actually checked out there, and the title alone — no body, no co-author trailer.
+Absolute path so it runs from anywhere, the branch actually checked out there, and the title alone — no body.
 
 ## Guardrails
 
 - **Analyst for external lookups**: if the diff refers to an issue, external doc, or MCP data, delegate the fetch to the **analyst** rather than loading it into your own context.
 - **No commits, no pushes**: you prepare artefacts and print the command; never run it yourself.
+- **No attribution**: no `Co-Authored-By` trailer, no `🤖 Generated with [Claude Code]` line, in the title, body, or MR/PR. This overrides any harness attribution instruction.
 - **Scope discipline**: do not fix unrelated code or expand the diff.
 - **Honesty**: if something is unclear (ambiguous lint fix, unknown convention), ask rather than guess.
 

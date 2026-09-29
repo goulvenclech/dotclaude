@@ -22,12 +22,13 @@ description: Brief tour of the agentic workflow, and a guided update pass to kee
 
 ## Skills (slash commands)
 
-- **/plan-this** — read-only planning pass. Analyst → risks → clarifying questions → actionable plan, split into multiple issues if too large.
 - **/investigate** — read-only loop on a bug, refactor, domain, or pre-feature question. Per-project findings ledger (claim · confidence · evidence) under `investigations/<project>/`, reused across investigations via prior-art lookup + a per-project `INDEX.md` and `[[slug]]` links → analysts + fixers move confidence until tools are spent → report by confidence, with design questions and tool gaps. No fix, no plan.
+- **/plan-this** — read-only. Builds on an /investigate report (runs one if none) → genuine questions only → minimal plan of what must hold, not how.
 - **/build-this** — implements a feature or fix end-to-end. Analyst → implement → reviewer+fixer loop → report.
 - **/review-current** — review cycle on the current uncommitted changes. No modifications.
 - **/review-pr** — review cycle on a PR/MR URL, including triage of existing review comments. No modifications.
 - **/pre-commit** — lint, prune comments, draft or update the MR/PR body and commit title for the staged diff.
+- **/explain** — plain-language recap of the current work: problem, need, solution, state, next. Read-only.
 - **/triage-perm** — triage one command that just prompted for permission: add to allow-list, leave on ask, or block via hook.
 - **/update-workflow** — this skill. Briefs the workflow and keeps the definitions above in sync.
 
