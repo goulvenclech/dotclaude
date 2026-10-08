@@ -1,35 +1,39 @@
 # Writing style
 
-Pass this file as context (`@~/.claude/writing-style.md`) when drafting any user-facing text: PR/MR bodies, commit messages, review comments, docs, release notes, etc.
+For any user-facing text: PR/MR bodies, commit messages, review comments, docs, release notes. Skills load it with `@~/.claude/writing-style.md`.
 
 ## Core
 
-- **Concision above all.** Cut filler. A short clear sentence beats a long verbose one. Default posture is delete, keep only what carries meaning.
-- **Sample the corpus.** Where the surface has precedent (recent merged MR/PR bodies, `git log`, sibling docs) read a few and match their length and register.
-- **British English** throughout spelling, idiom, punctuation. Soft enough for international readers, no regional slang. 
-- **Standard technical/domain terms**: keep accepted jargon and acronyms (software, finance, ops) when they're clear and unambiguous.
-- **French quotation marks** « » in place of " " when quoting.
-- **Oxford (serial) commas** in lists of three or more items.
-- **Asides** uses `(like this)` when discreet, examples `(e.g. like this)`, or short lists `(this, that, and the other)`. Reserve em-dashes — like this — for emphatic or meaningful asides, to introduce an emphatic punchline, qualification, or reversal — like this.
-- **_Italics_** for titles of works, or foreign words: `_bounded context_`, `_Le café c'est pas sorcier_`.
-- **Inline `code`** for identifiers, commands, file names, and short code snippets.
+- Concision above all. Cut preamble, recap, and stacked hedges. Default is delete, keep what carries meaning.
+- Sample the corpus. Where the surface has precedent (recent merged MR/PR bodies, `git log`, sibling docs), read a few and match their length and register.
+- British English in spelling, idiom, and punctuation, soft enough for international readers, no regional slang.
+- Keep accepted technical and domain jargon and acronyms when they are clear.
+- French quotation marks « » when quoting. Oxford comma in lists of three or more.
+- Asides in parentheses `(like this)`, examples `(e.g. like this)`.
+- _Italics_ for titles of works and foreign words, inline `code` for identifiers, commands, and file names.
 
 ## Tone
 
-- Direct, dry, no boilerplate. No greetings, no « I hope this helps », no « as you know ».
-- Not overly assertive when the ground is uncertain — lean on the conditional, phrase as a question, or leave explicit room for doubt.
-- Push-back lands better as observation than verdict. Especially in texts addressed to others (review comments, Slack, issue replies).
+- Direct and dry. No greetings, no boilerplate.
+- When the ground is uncertain, use the conditional, a question, or explicit room for doubt.
+- In texts addressed to others (review comments, Slack, issue replies), push back as an observation.
+
+## AI tells
+
+Generated-text reflexes that add noise. Cut on sight.
+
+- Antithesis: say what a thing is, without contrasting it with what nobody claimed (« X, not Y », « rather than », « not just X, but Y », « A over B »).
+- Stock phrasing (« delve », « robust », « seamless », « leverage », « crucial », « ensure », « it's worth noting », « in summary »): the plain word, or none.
+- Punchlines and hype: no closing zinger, no marketing adjectives, no triplets for rhythm.
+- Em-dashes, semicolons, colons, bold, and italics stay rare. A comma or a full stop usually does.
 
 ## Format by surface
 
-- **PR/MR body** — never simplify the repo's template, keep every section it provides. The free description is the shortest text that orients a reviewer, without restating the obvious, the linked issue, nor details of the implementation.
-- **Commit title** — `type(scope): short description`. Lowercase, imperative mood, one line.
-- **Commit body** — imperative mood; blank line after the title; wrap around 72 chars.
-- **Review comment** — point to `file:line`, state the concern, suggest the smallest safe fix. No patches.
-- **Release note** — user-facing outcome, not internal mechanics.
+- PR/MR body: keep every section of the repo's template. The free description is the shortest text that orients a reviewer, without the obvious, the linked issue, or implementation detail.
+- Commit title: `type(scope): short description`, lowercase, imperative, one line. Body in the imperative, blank line after the title, wrapped around 72 characters.
+- Review comment: `file:line`, the concern, the smallest safe fix. No patches.
+- Release note: the user-facing outcome.
 
 ## Fidelity
 
-- Preserve the key points, tone, and structure of the source or brief.
-- Never add meaning that isn't in the source, but never drop meaning that is.
-- If the brief is ambiguous, flag it explicitly rather than guessing.
+Keep the key points, tone, and structure of the source. Add no meaning, drop none. Flag an ambiguous brief.

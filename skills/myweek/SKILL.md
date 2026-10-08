@@ -12,4 +12,6 @@ Gather the facts in parallel:
 
 Output: five lines maximum, one per piece of work. Each line says what it changes for the business, its state (merged, open, blocked), and the reference (SM-xxxx, tiger!xxxxx). Group what belongs to the same project, cut the rest.
 
-Keep only what you verified in the sources; mark anything coming from a document I wrote myself as « to confirm ». No preamble, no conclusion. @~/.claude/writing-style.md
+Keep only what you verified in the sources, and mark anything coming from a document I wrote myself as « to confirm ». No preamble, no conclusion.
+
+@~/.claude/writing-style.md

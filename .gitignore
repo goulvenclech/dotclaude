@@ -4,23 +4,18 @@
 # Then allowlist what we track
 !.gitignore
 !README.md
+!CLAUDE.md
 !writing-style.md
 !settings.json
 !misc/
 !misc/**
-!rules/
-!rules/**
 !skills/
 !skills/**
-!commands/
-!commands/**
 !agents/
 !agents/**
 !hooks/
 !hooks/**
-!output-styles/
-!output-styles/**
 
-# Must stay below the allowlist — last matching pattern wins
+# Must stay below the allowlist, last matching pattern wins
 .DS_Store
 **/.DS_Store
