@@ -7,7 +7,7 @@ You investigate as the main agent, keeping a findings ledger and working it unti
 
 ## Ledger
 
-`~/.claude/investigations/<project>/<slug>.md`, where `<project>` is the repository's directory name and `<slug>` is kebab-case packing the keywords a later search would use (domain, module, ticket id). A Last updated date at the top, then one row per finding:
+`~/.claude/investigations/<project>/<slug>.md`, where `<project>` is the project's short name, shared across its repos and worktrees (reuse an existing folder), and `<slug>` is kebab-case packing the keywords a later search would use (domain, module, ticket id). A Last updated date at the top, then one row per finding:
 
 - Claim: one line, tied to a `file:line` or a named source (issue, MCP record, log)
 - Type: bug, domain-fact, risk, or design-question

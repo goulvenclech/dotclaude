@@ -1,6 +1,7 @@
 {
   "env": {
-    "ENABLE_LSP_TOOL": "1"
+    "ENABLE_LSP_TOOL": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
   },
   "attribution": {
     "commit": "",
@@ -23,6 +24,7 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
+  "advisorModel": "fable",
   "hooks": {
     "PreToolUse": [
       {
