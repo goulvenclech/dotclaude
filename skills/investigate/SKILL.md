@@ -1,5 +1,5 @@
 ---
-description: Investigate a bug, a refactor, an unfamiliar domain, or a pre-feature question in depth. Read-only, ends with a report, no fix and no plan.
+description: Investigate a bug, a refactor, an unfamiliar domain, or a pre-feature question in depth, when the ground is unclear or the risk is medium to high. Read-only, ends with a report, no fix and no plan. Skip it on a simple task.
 argument-hint: <question, bug, or ticket>
 ---
 
@@ -17,7 +17,7 @@ You investigate as the main agent, keeping a findings ledger and working it unti
 
 A design-question carries no confidence, it is for the user.
 
-Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, then refresh the date. Link related ledgers with `[[slug]]`. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps).
+Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, then refresh the date. Link related ledgers with `[[slug]]`. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps). Never start a slug with `project-`. Those ledgers belong to `supervise`, listed first, read as context, never resumed or written.
 
 ## Loop
 
@@ -25,7 +25,7 @@ Pick the finding whose confidence most needs moving, or a gap with no finding ye
 
 ## Report
 
-Lead with a TLDR: what the investigation establishes and how much to trust it. Then the findings by confidence, each with its evidence and any reproduction test. Then the design questions for the user, kept apart from what the tools settled. Then what you could not settle and the exact tool, credential, or access that would have closed it. Stop there.
+Lead with a TLDR: what the investigation establishes and how much to trust it. Then the findings by confidence, each with its evidence and any reproduction test. Then the design questions for the user, kept apart from what the tools settled. Then what you could not settle and the exact tool, credential, or access that would have closed it. Close with the next skill when it is obvious, `plan-this` for large work, `build-this` for a scoped fix.
 
 ## Guardrails
 

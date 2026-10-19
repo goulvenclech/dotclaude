@@ -10,9 +10,9 @@ One main agent orchestrates and implements. The constant rules live in `~/.claud
 Agents (`~/.claude/agents/`):
 - `analyst`: read-only context gathering, every connected MCP included. Called for any context-heavy lookup.
 - `reviewer`: read-only critique of the current diff or a named target. Ranked list or `LGTM`.
-- `fixer`: validates one critique per call, with a reproduction test when the branch is local. Verdicts: `Valid`, `Out of scope`, `Partly valid`, `Invalid`, `Ambiguous`.
+- `fixer`: validates one critique per call, with a reproduction test when the branch is local. Verdicts: `Valid`, `Not worth it`, `Out of scope`, `Partly valid`, `Invalid`, `Ambiguous`.
 
-Skills (`~/.claude/skills/`): `investigate` (ledger-driven, read-only, ends with a report), `plan-this` (on top of an investigation), `build-this` (analyst, implement, review cycle), `review-current`, `review-pr`, `pre-commit`, `explain`, `tidy-branches`, `mytodo`, `myweek`, and this one. Each file's description is its reference, this list only names them.
+Skills (`~/.claude/skills/`): `investigate` (optional, ledger-driven, read-only, ends with a report), `plan-this` (optional, on top of an investigation, for large work), `build-this` (analyst, implement, review cycle, then `pre-commit`), `review-current`, `review-pr`, `pre-commit`, `explain`, `tidy-branches`, `mytodo`, `supervise`, `myweek`, and this one. Each file's description is its reference, this list only names them.
 
 ## The update pass
 
