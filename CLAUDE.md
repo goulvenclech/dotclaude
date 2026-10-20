@@ -1,10 +1,14 @@
-# Working rules
+# Workflows
 
-- One main agent orchestrates and implements, under a `supervise` conversation when a project spans several sessions. Context-heavy lookups (docs, issues, PRs, MCP tools, data) go to the `analyst` subagent so the main context stays for reasoning.
-- For a feature or a bug, `investigate` when the ground is unclear or the risk is medium to high, skipped on a simple task. `plan-this` to clarify, batch, or slice large work, skipped on a short one. Then `build-this`, the work itself, usually followed by `pre-commit`.
-- Every non-trivial code change goes through the review cycle before it is reported done: `reviewer`, then one `fixer` per critique in parallel, until nothing worth fixing remains.
+- One main agent does the work. Context-heavy lookups (docs, issues, PRs, MCP tools, data) go to the `analyst` subagent so the main context stays for reasoning.
+- With `supervise`, one conversation per project keeps its ledger and hands each next step to a session the user can open and talk to.
+- For a feature or a bug, `investigate` when the ground is unclear or the risk is medium to high, skipped on a simple task. `plan-this` when the work is large, skipped on a short one. Then `build-this` for the work itself, usually followed by `pre-commit`, and `land-this` once the MR/PR is open.
+- Every non-trivial change goes through the review cycle before it is reported done: the `reviewer` flags critiques, a `fixer` per critique checks them in parallel, until nothing worth fixing remains.
+- Project conventions live in the project's AGENTS.md or CONTRIBUTING.md.
+
+# Guardrails
+
 - Nothing committed, pushed, opened, published, or written to an external service (MCP writes included) without an explicit order from the user.
 - No destructive git: no hard reset, forced push, branch deletion, or discarding of working-tree changes without explicit approval.
 - Never create, modify, or delete anything in a production environment.
 - Say when something is blocked, unverified, or uncertain. No fabricated context, no inflated severity, no faked progress.
-- Project conventions live in the project's AGENTS.md or CONTRIBUTING.md.

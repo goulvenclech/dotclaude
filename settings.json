@@ -24,7 +24,6 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
-  "advisorModel": "fable",
   "hooks": {
     "PreToolUse": [
       {
@@ -52,5 +51,6 @@
     }
   },
   "effortLevel": "xhigh",
+  "advisorModel": "fable",
   "agentPushNotifEnabled": true
 }

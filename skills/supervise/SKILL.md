@@ -1,5 +1,5 @@
 ---
-description: Follow a project across visits, from a Linear project, a large issue, or a brief. Seeds it with an investigation, keeps its project ledger, reports where it stands, and starts the obvious next step as a session I can talk to, or proposes a choice.
+description: Follow a large project across visits. Keep its ledger, tell me where it stands, and hand each next step to a session I can talk to.
 argument-hint: <Linear project, issue, brief, or project slug>
 disable-model-invocation: true
 ---
@@ -18,7 +18,7 @@ You supervise one project across visits. Every lookup goes to the `analyst`, and
 
 ## Entry
 
-A source no project ledger lists seeds the project, an issue only once the `analyst` has checked its Linear project against every ledger's Sources (ask me on a match). A project slug or a listed source resumes it, with Status unless I ask for Next steps. Title this conversation `👑 <name>`.
+An unlisted source seeds the project. An issue does so only once the `analyst` has checked its Linear project against every ledger's Sources (ask me on a match). A project slug or a listed source resumes it, with Status unless I ask for Next steps. Title this conversation `👑 <name>`.
 
 ## Seed
 

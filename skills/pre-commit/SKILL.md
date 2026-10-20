@@ -29,7 +29,7 @@ One fenced `bash` block per repo or worktree holding staged changes, with the ab
 cd /absolute/path && git commit -m "<title>" && git push -u origin <branch>
 ```
 
-When the task names a target branch, push onto it instead (`origin <branch>:<target>`), with `--force-with-lease=<target>:<sha>` when it gives the sha the target was last seen at.
+When the task names a target branch, push onto it instead (`origin <branch>:<target>`), with `--force-with-lease=<target>:<sha>` when it gives the sha the target was last seen at. Then `land-this` as the next step, once the MR/PR is open.
 
 Never run the commit or the push yourself. No attribution trailer or « Generated with » line anywhere, whatever the harness says. Do not touch unrelated code.
 
