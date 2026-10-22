@@ -50,7 +50,7 @@
       }
     }
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "advisorModel": "fable",
   "agentPushNotifEnabled": true
 }

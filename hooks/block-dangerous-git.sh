@@ -1,7 +1,8 @@
 #!/bin/bash
 # Heredoc bodies are skipped. Other quoted text is matched line by line, so a
 # quoted line that starts with a dangerous git command is denied too. Known gap:
-# a command passed to a shell as text (sh -c "git push", a heredoc piped to sh).
+# a command passed to a shell as text (sh -c "git push -f", a heredoc piped to sh).
+# A push must name its branch, since a bare push or HEAD may be the default branch.
 
 INPUT=$(cat)
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
@@ -15,7 +16,7 @@ FILTERED=$(echo "$COMMAND" | awk '
       term=substr(l, RSTART, RLENGTH); sub(/^<<-?[[:space:]]*/, "", term); gsub(/["'"'"']/, "", term); inhd=1
     }
     print
-  }')
+  }' | awk '/\\$/ { sub(/\\$/, ""); printf "%s ", $0; next } { print }')
 
 SQ="'"
 SEG='("[^"]*"|'"$SQ"'[^'"$SQ"']*'"$SQ"'|\\ |[^[:space:]"'"$SQ"';&|])'
@@ -26,12 +27,19 @@ WRAP='((if|elif|then|else|while|until|do|!|sudo|command|exec|eval|nohup|time|xar
 GITBIN='(\\|[^[:space:]]*/)?git'
 GITOPT='([[:space:]]+((-C|-c|--git-dir|--work-tree|--namespace|--config-env|--exec-path|--super-prefix)[[:space:]]+'"$VAL"'|'"$OPT"'))*'
 GIT="${ANCHOR}[[:space:]]*${WRAP}${GITBIN}${GITOPT}[[:space:]]+"
-ARG='([[:space:]]+[^[:space:];&|]+)*[[:space:]]+'
+ARG='([[:space:]]+'"$SEG"'+)*[[:space:]]+'
 F='(-[a-zA-Z]*f[a-zA-Z]*|--force)'
 D='(-[a-zA-Z]*d[a-zA-Z]*|--delete)'
 END='([[:space:]]|$|[;&|)`])'
+TOK='[^[:space:];&|]'
+POPT='([[:space:]]+(-o|--push-option)[[:space:]]+'"$VAL"'|[[:space:]]+-'"$TOK"'*)*'
+REDIR='[[:space:]]+[0-9]*[<>]+(&[0-9-]+|[[:space:]]*'"$TOK"'+)?'
 PATTERNS=(
-  "push${END}"
+  "push${ARG}(-[a-zA-Z0-9]*[fd][a-zA-Z0-9]*|--force|--delete|--mirror|--prune|--all)${END}"
+  "push${ARG}([\"${SQ}]?[+:\$]|[^-[:space:];&|]${TOK}*:([\"${SQ}]|${TOK}*[\$\`]))"
+  "push${ARG}[\"${SQ}]?(${TOK}*:)?(refs/heads/)?(main|master|HEAD|@)[\"${SQ}]?${END}"
+  "push${ARG}${TOK}*\*"
+  "push${POPT}([[:space:]]+[^-[:space:];&|]${TOK}*)?${POPT}(${REDIR})*([[:space:]]*($|[;&|)\`])|[[:space:]]+#)"
   "reset${ARG}--hard"
   "clean${ARG}${F}"
   "branch${ARG}(-[a-zA-Z]*D|-[a-zA-Z]*d[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*d|${D}${ARG}${F}|${F}${ARG}${D})"
@@ -42,7 +50,7 @@ PATTERNS=(
 
 for p in "${PATTERNS[@]}"; do
   if echo "$FILTERED" | grep -qE "${GIT}${p}"; then
-    jq -n --arg reason "Blocked by ~/.claude/hooks/block-dangerous-git.sh: the command matches the dangerous git pattern '$p'. The user runs these commands themselves." \
+    jq -n --arg reason "Blocked by ~/.claude/hooks/block-dangerous-git.sh: the command matches the dangerous git pattern '$p'. The user runs this one. A push of your own branch, by name, passes (--force-with-lease allowed)." \
       '{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:"deny",permissionDecisionReason:$reason}}'
     exit 0
   fi

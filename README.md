@@ -14,7 +14,7 @@ For the longer thinking behind it, read my « [Thoughts on AI agents](https://g
 - With [`supervise`](skills/supervise/SKILL.md), one conversation per project keeps its ledger, tells me where it stands, and hands each next step to a session I can open and talk to.
 - My trio for a feature or a bug: [`investigate`](skills/investigate/SKILL.md) when the ground is unclear or risky, [`plan-this`](skills/plan-this/SKILL.md) when the work is large, [`build-this`](skills/build-this/SKILL.md) for the work itself, then [`pre-commit`](skills/pre-commit/SKILL.md).
 - Review cycle: the [`reviewer`](agents/reviewer.md) flags critiques, a [`fixer`](agents/fixer.md) per critique checks them in parallel, then the main agent applies the valid fixes and re-runs until nothing worth fixing remains.
-- A [pre-tool-use hook](hooks/block-dangerous-git.sh) blocks every push, hard reset, forced clean, forced branch deletion, and discarding of the working tree.
+- A [pre-tool-use hook](hooks/block-dangerous-git.sh) blocks force pushes, pushes to the default branch, hard resets, forced cleans, forced branch deletions, and discarding of the working tree.
 - The [writing rules](writing-style.md) cover any user-facing text, and I review and approve anything that goes out.
 
 ## Installation

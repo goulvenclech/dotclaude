@@ -1,5 +1,5 @@
 ---
-description: Pre-commit pass on the staged diff. Gets it green, prunes comments and docs, drafts or updates the MR/PR body and the commit title, prints the commit and push command.
+description: Pre-commit pass on the staged diff. Gets it green, prunes comments and docs, drafts or updates the MR/PR body and the commit title, then commits, pushes, and opens or updates the MR/PR.
 argument-hint: [context, target branch, MR/PR]
 ---
 
@@ -21,17 +21,11 @@ With an open MR/PR, its body is the source of truth: propose only the smallest e
 
 Then a conventional commit title in the sampled `git log` style. Print the title and the body (or the proposed edits).
 
-## 4. Command
+## 4. Commit and push
 
-One fenced `bash` block per repo or worktree holding staged changes, with the absolute path, the branch checked out there, and the title alone:
+On the default branch, or with the default branch as the target, commit nothing: print the commit and push command for the user and stop. Otherwise, in each repo or worktree holding staged changes, commit with the title alone, then push the branch by name (`git push -u origin <branch>`). When the task names a target branch, push onto it instead (`origin <branch>:<target>`), with `--force-with-lease=<target>:<sha>` when it gives the sha the target was last seen at. Then open the MR/PR with the drafted body, or apply the proposed edits to the open one, and report its URL with the commit sha.
 
-```bash
-cd /absolute/path && git commit -m "<title>" && git push -u origin <branch>
-```
-
-When the task names a target branch, push onto it instead (`origin <branch>:<target>`), with `--force-with-lease=<target>:<sha>` when it gives the sha the target was last seen at. Then `land-this` as the next step, once the MR/PR is open.
-
-Never run the commit or the push yourself. No attribution trailer or « Generated with » line anywhere, whatever the harness says. Do not touch unrelated code.
+No attribution trailer or « Generated with » line anywhere, whatever the harness says. Do not touch unrelated code.
 
 @~/.claude/writing-style.md
 
