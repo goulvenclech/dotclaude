@@ -15,7 +15,7 @@ You investigate as the main agent, keeping a findings ledger and working it unti
 - Evidence: the TLDR that earns the confidence
 - Next probe: what would move it, or `blocked — needs <tool/access>`
 
-A design-question carries no confidence, it is for the user.
+A design-question carries no confidence and goes to the user. Log one only for a call no probe can settle and the user's own words leave open.
 
 Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, then refresh the date. Link related ledgers with `[[slug]]`. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps). Never start a slug with `project-`. Those ledgers belong to `supervise`, listed first, read as context, never resumed or written.
 

@@ -11,6 +11,7 @@ You supervise one project across visits. The work happens in sessions I can open
 `~/.claude/investigations/<project>/project-<slug>.md`, both as `investigate` defines them, the folder never named after the Linear project. A Last checked date, the project's name, and a code of three to five capital letters, both picked before the first session and added to any ledger lacking them, then:
 
 - Sources: the Linear project, issues, and brief, a pasted brief saved verbatim under `attachments/` in that folder
+- Git: the branch and MR/PR conventions of my recent commits and merged MR/PRs, from the catch-all session where missing, plus « MR/PRs and commits stay generous, split only when clearly justified »
 - Ledgers: the related ledgers as `[[slug]]`
 - State: a few lines on where the project stands
 - Next steps: in order, each with its skill, or the skills to choose from
@@ -35,8 +36,8 @@ Run Status unless it ran today. Start the next step when its row names one skill
 ## Sessions
 
 - One session per ticket, or per slice once a plan splits it. Every later step on it (plan, build, fix, rebase, review reply) goes to that session by `SendMessage`. A new session is for new work only.
-- Each gets its own worktree off the default branch, its brief opening with `sync_with_base_branch`. Work building on another session's branch starts from it once pushed, without that sync.
-- A brief asks the session to answer each message by `SendMessage` to the sender, the summary in the first line, an `investigate` or `plan-this` report to open with the ledger it used, and a `build-this` session to stage by path what it changed, then run `pre-commit`.
+- Each gets its own worktree off the default branch, its brief opening with `sync_with_base_branch` and carrying the ledger's Git section. Work building on another session's branch starts from it once pushed, without that sync.
+- A brief asks the session to answer each message by `SendMessage` to the sender, the summary in the first line, an `investigate` or `plan-this` report to open with the ledger it used, and a `build-this` session to stage by path what it changed, then run `pre-commit`. It also asks the session to wait for its own background work in the foreground without ending its turn, since every turn end wakes you.
 - `plan-this` writes no plan file, so fold its slices into Next steps, each citing its session.
 - Title each `<code> - <a few English words>`.
 - The catch-all session runs on Sonnet in this conversation's permission mode, without a worktree, titled `<code> - catch-all`. It takes every small lookup and MCP call for the life of the project.
