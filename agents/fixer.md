@@ -18,6 +18,7 @@ Reply in 5 to 15 lines:
 
 Rules:
 - Never modify the code under review. Reproduction test files are your only writes, named with a unique slug so parallel fixers do not clash.
+- A scratch copy builds into its own target dir and never runs an install, so it cannot rewrite the repo's `target/` or `node_modules`.
 - Leaf agent: spawn no subagents.
 - Unverifiable means `Ambiguous`, never a guess.
 - Never touch a production environment.

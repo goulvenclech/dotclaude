@@ -17,5 +17,6 @@
 !hooks/**
 
 # Must stay below the allowlist, last matching pattern wins
+skills/synced
 .DS_Store
 **/.DS_Store

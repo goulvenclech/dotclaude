@@ -8,7 +8,7 @@ Fetch with prune first, or « merged » reads stale. Then take stock of every lo
 
 A branch is merged when its upstream is gone after the PR/MR merged, the only signal that catches squash merges. Commits all present in the default branch confirm fast-forward and merge-commit cases but miss squashes, so never rely on that alone. Anything that fails both is kept.
 
-For each merged branch, remove its worktree first, then the branch with `git branch -d`. A squash-merged branch needs `-D`, which the hook denies: print those deletions in one `bash` block for me to run. Prune worktree entries whose directory is gone. Never touch the current branch, the default branch, the primary worktree, a branch with commits that exist nowhere upstream, or a dirty or locked worktree. Flag those instead.
+For each merged branch, remove its worktree first, then the branch with `git branch -d`. A squash-merged branch needs `-D`, which the hook denies: print those deletions in one `bash` block for me to run. Prune worktree entries whose directory is gone. Never touch the current branch, the default branch, the primary worktree, a branch with commits that exist nowhere upstream, or a dirty or locked worktree. Flag those instead. Every kept worktree still loses its `target/`, only a build cache, unless a build is running in it.
 
 Report in a few lines: what was removed, what was kept and why, each with the one thing to do about it if any.
 
