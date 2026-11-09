@@ -7,17 +7,17 @@ You investigate as the main agent, keeping a findings ledger and working it unti
 
 ## Ledger
 
-`~/.claude/investigations/<project>/<slug>.md`, where `<project>` is the project's short name, shared across its repos and worktrees (reuse an existing folder), and `<slug>` is kebab-case packing the keywords a later search would use (domain, module, ticket id). A Last updated date at the top, then one row per finding:
+`~/.claude/investigations/<project>/<slug>.md`, where `<project>` is the project's short name, shared across its repos and worktrees (reuse an existing folder), and `<slug>` is kebab-case packing the keywords a later search would use (domain, module, ticket id). A title, a Last updated date, the related ledgers as `[[slug]]`, then one row per finding:
 
-- Claim: one line, tied to a `file:line` or a named source (issue, MCP record, log)
+- Claim: one sentence under 250 characters, tied to a `file:line` or a named source (issue, MCP record, log)
 - Type: bug, domain-fact, risk, or design-question
-- Confidence: Confirmed (a reproduction behaves as predicted, or unambiguous data from an authoritative source), Likely (code and data converge, nothing reproduces it), Possible (one plausible signal), Refuted (disproven, kept in one line so it is not reopened), Discarded (irrelevant or subsumed, kept in one line why)
-- Evidence: the TLDR that earns the confidence
+- Confidence: Confirmed (a reproduction behaves as predicted, or unambiguous data from an authoritative source), Likely (code and data converge, nothing reproduces it), Possible (one plausible signal), Refuted (disproven, kept so it is not reopened), Discarded (irrelevant or subsumed, kept with why)
+- Evidence: the TLDR that earns the confidence, under 400 characters, citing its sources for the rest
 - Next probe: what would move it, or `blocked — needs <tool/access>`
 
 A design-question carries no confidence and goes to the user. Log one only for a call no probe can settle and the user's own words leave open.
 
-Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, then refresh the date. Link related ledgers with `[[slug]]`. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps). Never start a slug with `project-`. Those ledgers belong to `supervise`, listed first, read as context, never resumed or written.
+Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, rewrite its row in place, merge the findings of any pass section into the table and fold the rest, with any journal, into History at one line per past run, then refresh the date. Each run adds one dated line to a closing History section at its report, under 200 characters, citing MR/PRs, commits, issues, and `[[slug]]` for the detail. The ledger holds nothing else, no journal, pass section, second table, or plan. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps). Never start a slug with `project-`. Those ledgers belong to `supervise`, listed first, read as context, never resumed or written.
 
 ## Loop
 
