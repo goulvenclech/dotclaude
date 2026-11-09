@@ -9,7 +9,7 @@ Apply Goulven's 5-axis epistemological apparatus to evaluate the solidity of the
 
 The apparatus suits programme trajectories, scientific currents, traditions of thought, and widely discussed theories or arguments, less so a single isolated paper, since the diachronic and social axes are under-evidenced from one document. If asked to audit one, flag the limit and audit what can be audited.
 
-Keep the output brief, a verdict plus one or two sentences per axis, then a global verdict, conciseness over completeness. Judge from the evidence in the artefact and any background knowledge available; do not invent missing evidence, but flag what is missing.
+Keep the output brief, a verdict plus one or two sentences per axis, then a global verdict, conciseness over completeness in the write-up, not in the research. Judge from the evidence in the artefact and any background knowledge available; do not invent missing evidence, but flag what is missing. With no artefact under review, survey the field before auditing, the less visible programmes included.
 
 ## Five questions about the programme under review
 
@@ -59,7 +59,7 @@ The more answers are "yes", the stronger the axis. A "no" on (a) or (b) → lock
 
 Following Stanford 2006, Stanford 2019 and Dellsén 2017, the absence of a serious rival is evidence only in proportion to the search behind it (the size, time, and incentives the community had to find one). The social axis scores the correction of hypotheses already on the table; this one scores the search for those that are not.
 
-Two questions.
+Search for rivals yourself before concluding, beyond those already named, then answer two questions.
 
 - (a) Does the programme's standing rest on elimination ("the only viable option") rather than on the diachronic and robustness axes?
 - (b) Has the space been searched, with a long-standing consensus, many independent groups, and alternative programmes funded and published?
