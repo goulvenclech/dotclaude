@@ -21,7 +21,7 @@ Verification: branch checked out locally | diff-only
 | Author | Thread | Verdict |
 
 ### Verdict
-Approve / Approve with nits / Request changes / Needs discussion, and two sentences why.
+Approve / Approve with nits (only Low critiques left to fix) / Request changes / Needs discussion, and two sentences why.
 ```
 
 No comments, approvals, or thread resolutions on the PR, and no file changes beyond fixer reproduction tests. One sentence per critique unless it needs more.
