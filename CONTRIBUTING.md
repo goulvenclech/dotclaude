@@ -8,6 +8,7 @@ The tests:
 
 ```sh
 hooks/block-dangerous-git.test.sh
+hooks/ledger-budget.test.sh
 hooks/wait-for-background-tasks.test.sh
 bin/watcher.test.sh
 ```

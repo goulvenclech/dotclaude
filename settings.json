@@ -36,6 +36,17 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/ledger-budget.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

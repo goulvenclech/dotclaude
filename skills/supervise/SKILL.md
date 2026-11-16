@@ -4,7 +4,7 @@ argument-hint: <Linear project, issue, brief, or project slug>
 disable-model-invocation: true
 ---
 
-You supervise one project across visits. The work happens in sessions I can open and talk to. You write only the project ledger, its index line by `investigate`'s rule, and the saved brief, and run no lookup yourself (`glab`, `curl`, MCP reads, other sessions' transcripts): the catch-all session takes them, or the `analyst` before it exists.
+You supervise one project across visits. The work happens in sessions I can open and talk to. You write only the project ledger, its history, its index line by `investigate`'s rule, and the saved brief, and run no lookup yourself (`glab`, `curl`, MCP reads, other sessions' transcripts): the catch-all session takes them, or the `analyst` before it exists.
 
 ## Project ledger
 
@@ -14,12 +14,13 @@ You supervise one project across visits. The work happens in sessions I can open
 - Git: the branch and MR/PR conventions of my recent commits and merged MR/PRs, from the catch-all session where missing, plus « MR/PRs and commits stay generous, split only when clearly justified »
 - Ledgers: the related ledgers as `[[slug]]`
 - State: where the project stands and what waits on me, under 800 characters, each waiting choice citing where its options live (a session's ledger or an attachment)
-- Decisions: one dated line per decision or standing rule I give, under 200 characters, rewritten when I reverse it
+- Decisions: one dated line per decision or standing rule of mine still in force, under 200 characters, one tied to a done step or one I reverse going to the history
 - Next steps: the open ones in order, each with its skill, or the skills to choose from
-- Sessions: one row per session started or proposed, with its id or name, skill, ticket, status (proposed, running, waiting on me, MR open, or done), branch, and MR/PRs as full URLs, nothing more
-- History: one dated line per session done or scope change, under 200 characters, citing MR/PRs by short ref, commits, issues, and `[[slug]]` for the detail
+- Sessions: one row per session started or proposed, with its id or name, skill, ticket, status (proposed, running, waiting on me, MR open, or done), branch, and MR/PRs as full URLs, nothing more, under 200 characters besides the URLs
 
-State, Next steps, and Sessions are rewritten in place: a done step leaves, a done session keeps its short row. The detail lives in the sessions' ledgers and MR/PRs.
+State, Next steps, and Sessions are rewritten in place: a done step leaves, and so does a done session, its MR/PRs merged or closed. The detail lives in the sessions' ledgers and MR/PRs.
+
+Write the ledger only when one of its facts changes: a session's status, a step done or added, a decision I give, State. A report or notice that changes none of them leaves it as it is. The history goes to `attachments/<slug>-history.md`, read only to find a session that left Sessions when a later step concerns it: one dated line when a session turns done, a decision leaves, or I change the scope, never more, under 200 characters, citing the session's id or name, MR/PRs by short ref, commits, issues, and `[[slug]]` for the detail.
 
 ## Entry
 
@@ -39,7 +40,7 @@ Run Status unless it ran today. Start the next step when its row names one skill
 
 ## Sessions
 
-- One session per ticket, or per slice once a plan splits it. Every later step on it (plan, build, fix, rebase, review reply) goes to that session by `SendMessage`. A new session is for new work only.
+- One session per ticket, or per slice once a plan splits it. Every later step on it (plan, build, fix, rebase, review reply) goes to that session by `SendMessage`. Before new work, even work related to its last, clear it with `clear_session`, or send as is when that is refused, the message then carrying the ticket, its ledgers, its Sessions row, and the brief's asks. A new session is for new work only.
 - Each gets its own worktree off the default branch, its brief opening with `sync_with_base_branch` and carrying the ledger's Git section. Work building on another session's branch starts from it once pushed, without that sync.
 - A brief asks the session to answer each message by `SendMessage` to the sender, the summary in the first line, an `investigate` or `plan-this` report to open with the ledger it used, and a `build-this` session to stage by path what it changed, then run `pre-commit`. It also asks the session to wait for its own background work in the foreground without ending its turn, since every turn end wakes you.
 - `plan-this` writes no plan file, so fold its slices into Next steps, each citing its session.
@@ -48,7 +49,7 @@ Run Status unless it ran today. Start the next step when its row names one skill
 
 ## Sentinel
 
-Messages from `watcher` carry new GitHub and GitLab items this project owns, forwarded by the `sentinel` conversation. Forward each to the session that owns it by `SendMessage`, update the ledger, and tell me only what waits on me. An item no session owns becomes a proposal.
+Messages from `watcher` carry new GitHub and GitLab items this project owns, forwarded by the `sentinel` conversation. Forward each to the session that owns it by `SendMessage`, and tell me only what waits on me. An item no session owns becomes a proposal.
 
 @~/.claude/writing-style.md
 
