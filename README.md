@@ -16,7 +16,7 @@ For the longer thinking behind it, read my « [Thoughts on AI agents](https://g
 - My trio for a feature or a bug: [`investigate`](skills/investigate/SKILL.md) when the ground is unclear or risky, [`plan-this`](skills/plan-this/SKILL.md) when the work is large, [`build-this`](skills/build-this/SKILL.md) for the work itself, then [`pre-commit`](skills/pre-commit/SKILL.md).
 - Review cycle: the [`reviewer`](agents/reviewer.md) flags critiques, a [`fixer`](agents/fixer.md) per critique checks them in parallel, then the main agent applies the valid fixes and re-runs until nothing worth fixing remains. [`review-pr`](skills/review-pr/SKILL.md) runs it on other contributors' MR/PRs.
 - A [pre-tool-use hook](hooks/block-dangerous-git.sh) blocks force pushes, pushes to the default branch, hard resets, forced cleans, forced branch deletions, and discarding of the working tree.
-- The [writing rules](writing-style.md) cover any user-facing text, and I review and approve anything that goes out.
+- The [writing rules](writing-style.md) cover any user-facing text, and I review and approve anything that goes out. [`prose`](skills/prose/SKILL.md) edits or reviews docs, MR/PR bodies, and messages, and [`ui-copy`](skills/ui-copy/SKILL.md) does the same for interface text.
 
 ## Installation
 
