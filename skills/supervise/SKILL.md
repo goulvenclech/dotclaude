@@ -43,7 +43,7 @@ Run Status unless it ran today. Start the next step when its row names one skill
 - One session per ticket, or per slice once a plan splits it. Every later step on it (plan, build, fix, rebase, review reply) goes to that session by `SendMessage`. Before new work, even work related to its last, clear it with `clear_session`, or send as is when that is refused, the message then carrying the ticket, its ledgers, its Sessions row, and the brief's asks. A new session is for new work only.
 - Each gets its own worktree off the default branch, its brief opening with `sync_with_base_branch` and carrying the ledger's Git section. Work building on another session's branch starts from it once pushed, without that sync.
 - A brief asks the session to answer each message by `SendMessage` to the sender, the summary in the first line, an `investigate` or `plan-this` report to open with the ledger it used, and a `build-this` session to stage by path what it changed, then run `pre-commit`. It also asks the session to wait for its own background work in the foreground without ending its turn, since every turn end wakes you.
-- `plan-this` writes no plan file, so fold its slices into Next steps, each citing its session.
+- `plan-this` writes no plan file, so fold its next step, or its slices in order, into Next steps, each citing its session.
 - Title each `<code> - <a few English words>`.
 - The catch-all session runs on Sonnet in this conversation's permission mode, without a worktree, titled `<code> - catch-all`. It takes every small lookup and MCP call for the life of the project.
 

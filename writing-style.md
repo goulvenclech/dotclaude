@@ -36,7 +36,7 @@ Generated-text reflexes that add noise. Cut on sight. When a tell hides a vague 
 
 - PR/MR body: keep every section of the repo's template. The free description is the shortest text that orients a reviewer, without the obvious, the linked issue, or implementation detail.
 - Commit title: conventional `type(scope): short description`, lowercase, imperative, one line of about 50 characters, without « and » or commas. Body optional, at most a short paragraph on what the title and diff cannot say (the why, a surprising effect), never a feature tour. Imperative, blank line after the title, wrapped around 72 characters.
-- Review comment: `file:line`, the concern, the smallest safe fix. No patches.
+- Review comment: `file:line`, the case that goes wrong or what it costs, the smallest safe fix. No patches.
 - Release note: the user-facing outcome.
 
 ## Fidelity
