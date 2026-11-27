@@ -4,19 +4,19 @@ My global [Claude Code](https://code.claude.com/docs) configuration 🤖
 
 ## Philosophy
 
-One main agent does the work, or supervises several sub-sessions on a project. Context-heavy lookups go to the [`analyst`](agents/analyst.md) subagent. Every non-trivial change runs through the review cycle until nothing worth fixing remains. Soft guardrails live in [`CLAUDE.md`](CLAUDE.md), the agents, and the skills; hard ones in the [hooks](hooks/), and tools. Designed to keep an engaged human (me?) in the loop.
+One main agent does the work, or leads a project across several sub-sessions. Context-heavy lookups go to the [`analyst`](agents/analyst.md) subagent. Every non-trivial change runs through the review cycle until nothing worth fixing remains. Soft guardrails live in [`CLAUDE.md`](CLAUDE.md), the agents, and the skills; hard ones in the [hooks](hooks/), and tools. Designed to keep an engaged human (me?) in the loop.
 
 For the longer thinking behind it, read my « [Thoughts on AI agents](https://goulven-clech.dev/2026/ai-agents/) ».
 
 ## Notable files
 
 - [`CLAUDE.md`](CLAUDE.md) holds the workflow directions and the soft guardrails that every session and subagent receives.
-- With [`supervise`](skills/supervise/SKILL.md), one conversation per project keeps its ledger, tells me where it stands, and hands each next step to a session I can open and talk to.
-- With [`sentinel`](skills/sentinel/SKILL.md), one conversation per account triages what the [watcher](bin/watcher.sh) finds on GitHub or GitLab each minute without a model call, and forwards each item to the right project, drops it, or proposes a session.
+- With [`project-lead`](skills/project-lead/SKILL.md), one conversation per project keeps its ledger, tells me where it stands, and hands each next step to a session I can open and talk to.
+- With [`supervisor`](skills/supervisor/SKILL.md), one conversation per account triages what the [watcher](bin/watcher.sh) finds on GitHub or GitLab each minute without a model call, and forwards each item to the right project, drops it, or proposes a session.
 - My trio for a feature or a bug: [`investigate`](skills/investigate/SKILL.md) when the ground is unclear or risky, [`plan-this`](skills/plan-this/SKILL.md) when the work is large, [`build-this`](skills/build-this/SKILL.md) for the work itself, then [`pre-commit`](skills/pre-commit/SKILL.md).
-- Review cycle: the [`reviewer`](agents/reviewer.md) flags critiques, a [`fixer`](agents/fixer.md) per critique checks them in parallel, then the main agent applies the valid fixes and re-runs until nothing worth fixing remains. [`review-pr`](skills/review-pr/SKILL.md) runs it on other contributors' MR/PRs.
+- Review cycle: the [`reviewer`](agents/reviewer.md) flags critiques, a [`verifier`](agents/verifier.md) per critique checks them in parallel, then the main agent applies the valid fixes and re-runs until nothing worth fixing remains. [`review-this`](skills/review-this/SKILL.md) runs it on other contributors' MR/PRs.
 - A [pre-tool-use hook](hooks/block-dangerous-git.sh) blocks force pushes, pushes to the default branch, hard resets, forced cleans, forced branch deletions, and discarding of the working tree.
-- The [writing rules](writing-style.md) cover any user-facing text, and I review and approve anything that goes out. [`prose`](skills/prose/SKILL.md) edits or reviews docs, MR/PR bodies, and messages, and [`ui-copy`](skills/ui-copy/SKILL.md) does the same for interface text.
+- The [writing rules](writing-style.md) cover any user-facing text, and I review and approve anything that goes out. [`prose`](skills/prose/SKILL.md) edits or reviews docs, MR/PR bodies, and messages, and [`prose-ui`](skills/prose-ui/SKILL.md) does the same for interface text.
 
 ## Installation
 

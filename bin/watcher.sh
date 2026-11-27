@@ -2,8 +2,8 @@
 # Polls GitHub notifications and GitLab todos every minute under launchd, with no
 # model call until something is new.
 #
-# Usage: watcher.sh [install] --sentinel LEDGER [--gh] [--glab] [--dry-run]
-#        watcher.sh uninstall --sentinel LEDGER
+# Usage: watcher.sh [install] --supervisor LEDGER [--gh] [--glab] [--dry-run]
+#        watcher.sh uninstall --supervisor LEDGER
 #        watcher.sh send TITLE TEXT
 
 # Appended, not prepended: launchd's PATH lacks Homebrew, and tests put stubs first.
@@ -17,7 +17,7 @@ CLAUDE_BIN=${CLAUDE_BIN:-$(ls -d "$HOME/Library/Application Support/Claude/claud
 log() { echo "$(date '+%F %T') $*" >&2; }
 
 usage() {
-  echo "Usage: watcher.sh [install] --sentinel LEDGER [--gh] [--glab] [--dry-run] | uninstall --sentinel LEDGER | send TITLE TEXT" >&2
+  echo "Usage: watcher.sh [install] --supervisor LEDGER [--gh] [--glab] [--dry-run] | uninstall --supervisor LEDGER | send TITLE TEXT" >&2
   exit 2
 }
 
@@ -48,7 +48,7 @@ notify() {
     -e 'end run' -- "$1" > /dev/null
 }
 
-alert() { send "$SENTINEL" "Watcher: $1" || notify "$1"; }
+alert() { send "$SUPERVISOR" "Watcher: $1" || notify "$1"; }
 
 # Fetchers print one item per line: key, URL, repository, reason, title, split by
 # \x1f since whitespace separators merge around empty fields. They return 2 when
@@ -180,7 +180,7 @@ while [ $# -gt 0 ]; do
   case $1 in
     --gh) SOURCES+=(gh) ;;
     --glab) SOURCES+=(glab) ;;
-    --sentinel) [ -n "$2" ] || usage; LEDGER=$2; shift ;;
+    --supervisor) [ -n "$2" ] || usage; LEDGER=$2; shift ;;
     --dry-run) DRY=true ;;
     *) usage ;;
   esac
@@ -188,8 +188,8 @@ while [ $# -gt 0 ]; do
 done
 [ -n "$LEDGER" ] || usage
 NAME=$(basename "$LEDGER" .md)
-SENTINEL="🔭 $NAME"
-STATE="${WATCHER_STATE:-$HOME/.claude/state/sentinel-$NAME}"
+SUPERVISOR="🔭 $NAME"
+STATE="${WATCHER_STATE:-$HOME/.claude/state/supervisor-$NAME}"
 LABEL="claude.watcher.$NAME"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 if [ "$CMD" = uninstall ]; then
@@ -202,12 +202,12 @@ LEDGER="$(cd "$(dirname "$LEDGER")" && pwd)/$(basename "$LEDGER")"
 mkdir -p "$STATE"
 if [ "$CMD" = install ]; then
   $DRY && usage
-  install --sentinel "$LEDGER" $(printf -- '--%s ' "${SOURCES[@]}")
+  install --supervisor "$LEDGER" $(printf -- '--%s ' "${SOURCES[@]}")
   exit
 fi
 
 NEW=$(mktemp)
-# Built outside inbox/ and moved in whole, since the sentinel deletes what it reads there.
+# Built outside inbox/ and moved in whole, since the supervisor deletes what it reads there.
 KEPT=$(mktemp "$STATE/batch.XXXXXX")
 trap 'rm -f "$NEW" "$KEPT"' EXIT
 for src in "${SOURCES[@]}"; do poll "$src"; done

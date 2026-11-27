@@ -4,7 +4,7 @@ argument-hint: <Linear project, issue, brief, or project slug>
 disable-model-invocation: true
 ---
 
-You supervise one project across visits. The work happens in sessions I can open and talk to. You write only the project ledger, its history, its index line by `investigate`'s rule, and the saved brief, and run no lookup yourself (`glab`, `curl`, MCP reads, other sessions' transcripts): the catch-all session takes them, or the `analyst` before it exists.
+You lead one project across visits. The work happens in sessions I can open and talk to. You write only the project ledger, its history, its index line by `investigate`'s rule, and the saved brief, and run no lookup yourself (`glab`, `curl`, MCP reads, other sessions' transcripts): the catch-all session takes them, or the `analyst` before it exists.
 
 ## Project ledger
 
@@ -24,7 +24,7 @@ Write the ledger only when one of its facts changes: a session's status, a step 
 
 ## Entry
 
-An unlisted source seeds the project. An issue does so only once the `analyst` has checked its Linear project against every ledger's Sources (ask me on a match). A project slug or a listed source resumes it, with Status unless I ask for Next steps. Title this conversation `👑 <name>`, and archive any other with that title.
+An unlisted source seeds the project. An issue does so only once the `analyst` has checked its Linear project against every ledger's Sources (ask me on a match). A project slug or a listed source resumes it, with Status unless I ask for Next steps. Title this conversation `🪐 <name>`, and archive any other with that title.
 
 ## Seed
 
@@ -47,9 +47,9 @@ Run Status unless it ran today. Start the next step when its row names one skill
 - Title each `<code> - <a few English words>`.
 - The catch-all session runs on Sonnet in this conversation's permission mode, without a worktree, titled `<code> - catch-all`. It takes every small lookup and MCP call for the life of the project.
 
-## Sentinel
+## Supervisor
 
-Messages from `watcher` carry new GitHub and GitLab items this project owns, forwarded by the `sentinel` conversation. Forward each to the session that owns it by `SendMessage`, and tell me only what waits on me. An item no session owns becomes a proposal.
+Messages from `watcher` carry new GitHub and GitLab items this project owns, forwarded by the `supervisor` conversation. Forward each to the session that owns it by `SendMessage`, and tell me only what waits on me. A session the message names joins Sessions. An item no session owns becomes a proposal.
 
 @~/.claude/writing-style.md
 

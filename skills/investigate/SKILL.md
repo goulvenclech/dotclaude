@@ -3,7 +3,7 @@ description: Investigate a bug, a refactor, an unfamiliar domain, or a pre-featu
 argument-hint: <question, bug, or ticket>
 ---
 
-You investigate as the main agent, keeping a findings ledger and working it until confidence stops moving. Analysts do every bulk lookup and pull every available MCP. Fixers confirm or refute claims, by a focused reproduction test where the claim is replicable and by close analysis otherwise. Judgement stays with you.
+You investigate as the main agent, keeping a findings ledger and working it until confidence stops moving. Analysts do every bulk lookup and pull every available MCP. Verifiers confirm or refute claims, by a focused reproduction test where the claim is replicable and by close analysis otherwise. Judgement stays with you.
 
 ## Ledger
 
@@ -17,11 +17,11 @@ You investigate as the main agent, keeping a findings ledger and working it unti
 
 A design-question carries no confidence and goes to the user. Log one only for a call no probe can settle and the user's own words leave open.
 
-Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, rewrite its row in place, merge the findings of any pass section into the table and fold the rest, with any journal, into History at one line per past report, then refresh the date. Each report you give adds one dated line to a closing History section, under 200 characters, citing MR/PRs, commits, issues, and `[[slug]]` for the detail. The ledger holds nothing else, no journal, pass section, second table, or plan. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps). Never start a slug with `project-`. Those ledgers belong to `supervise`, listed first, read as context, never resumed or written.
+Before seeding, read `~/.claude/investigations/<project>/INDEX.md` for prior art. Resume a ledger under a month old on the same subject: re-verify each finding against current code and data, rewrite its row in place, merge the findings of any pass section into the table and fold the rest, with any journal, into History at one line per past report, then refresh the date. Each report you give adds one dated line to a closing History section, under 200 characters, citing MR/PRs, commits, issues, and `[[slug]]` for the detail. The ledger holds nothing else, no journal, pass section, second table, or plan. Keep the index current, one line per ledger (`slug` · description · Last updated), the description under 250 characters and free of state that goes stale (branch, confidence, next steps). Never start a slug with `project-`. Those ledgers belong to `project-lead`, listed first, read as context, never resumed or written.
 
 ## Loop
 
-Pick the finding whose confidence most needs moving, or a gap with no finding yet. Probe it with analysts and fixers in parallel (several Agent calls in one message), then update the ledger. Repeat until every finding is Confirmed, Refuted or Discarded, blocked on a named tool or access, or a design-question, and a full pass surfaces nothing new. Push to the end of what your tools allow. When a design or policy decision blocks one branch of the analysis, surface it to the user mid-loop and carry on with the rest.
+Pick the finding whose confidence most needs moving, or a gap with no finding yet. Probe it with analysts and verifiers in parallel (several Agent calls in one message), then update the ledger. Repeat until every finding is Confirmed, Refuted or Discarded, blocked on a named tool or access, or a design-question, and a full pass surfaces nothing new. Push to the end of what your tools allow. When a design or policy decision blocks one branch of the analysis, surface it to the user mid-loop and carry on with the rest.
 
 ## Report
 
@@ -29,7 +29,7 @@ Lead with a TLDR: what the investigation establishes and how much to trust it. T
 
 ## Guardrails
 
-- Read-only on the repo and the world. The ledger, its index, and fixer reproduction tests (kept on a confirming verdict, deleted otherwise) are the only writes.
+- Read-only on the repo and the world. The ledger, its index, and verifier reproduction tests (kept on a confirming verdict, deleted otherwise) are the only writes.
 - Every lookup goes through subagents, in parallel when independent.
 - Confidence rises on evidence only. Confirmed needs a reproduction or unambiguous data.
 - When your tools cannot settle a point, name the gap.

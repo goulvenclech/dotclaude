@@ -5,7 +5,7 @@ argument-hint: <PR or MR URL> [issue URLs]
 
 The `analyst` builds the brief: description and metadata, every review thread (author, file, line, body, resolved or not), linked issue requirements, project conventions. The `reviewer` reviews the diff against that brief and checks that it addresses the linked issues.
 
-Then one `fixer` per reviewer critique and per unresolved thread, in parallel. With the branch checked out locally, fixers reproduce. Otherwise the verification is diff-only, and the report says so. A thread the current diff already handles is `Invalid`, reason « addressed ».
+Then one `verifier` per reviewer critique and per unresolved thread, in parallel. With the branch checked out locally, verifiers reproduce. Otherwise the verification is diff-only, and the report says so. A thread the current diff already handles is `Invalid`, reason « addressed ».
 
 Report:
 
@@ -24,7 +24,7 @@ Verification: branch checked out locally | diff-only
 Approve / Approve with nits (only Low critiques left to fix) / Request changes / Needs discussion, and two sentences why.
 ```
 
-No comments, approvals, or thread resolutions on the PR, and no file changes beyond fixer reproduction tests. One sentence per critique unless it needs more.
+No comments, approvals, or thread resolutions on the PR, and no file changes beyond verifier reproduction tests. One sentence per critique unless it needs more.
 
 ## Task
 

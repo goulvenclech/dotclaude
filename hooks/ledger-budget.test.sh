@@ -69,4 +69,36 @@ t none "$(bash_cmd "ls")"
 t none '{"tool_name":"Read","tool_input":{}}'
 t none 'not json'
 
+SUP="$HOME/.claude/investigations/supervisor"
+mkdir -p "$SUP/attachments"
+supervisor() {
+  local project="$1" session="$2" extra="$3"
+  printf '# perso\n\n## Projects\n\n| Title | Session | Ledger | Repositories | Latest update |\n|---|---|---|---|---|\n| %s |\n\n## Filters\n\n## Reviews\n\n## Sessions\n\n| Item | Session | Status |\n|---|---|---|\n| %s |\n%s' \
+    "$project" "$session" "$extra" > "$SUP/perso.md"
+}
+sup_edit() { echo "{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"$SUP/$1\"}}"; }
+ROW="🪐 P | local_0123abcd | [[project-p]] | o/p"
+
+supervisor "$ROW | 2026-11-26: v1 released, $URL/1" "$URL/2 | s1 | running"
+t none "$(sup_edit perso.md)"
+t none "$(bash_cmd "cd ~/.claude/investigations/supervisor && cat perso.md")"
+
+supervisor "$ROW | $(rep u 151)" "s1"
+t "Latest updates over 150 characters at lines 7:" "$(bash_cmd "cd ~/.claude/investigations/supervisor && python3 - <<'EOF'\\np = 'perso.md'")"
+supervisor "$ROW, $(rep r 360) | 2026-11-26: v1" "s1"
+t "Projects rows over 400 characters besides URLs at lines 7:" "$(sup_edit perso.md)"
+supervisor "$ROW | 2026-11-26: v1" "$(rep s 200)"
+t "Sessions rows over 200 characters besides URLs at lines 17:" "$(sup_edit perso.md)"
+supervisor "$ROW | 2026-11-26: v1" "s1" "$(for i in $(seq 60); do echo "| s$i | $(rep w 140) |"; done)"
+t none "$(sup_edit perso.md)"
+supervisor "$ROW | 2026-11-26: v1" "s1" "$(for i in $(seq 120); do echo "| s$i | $(rep w 140) |"; done)"
+t "bytes (budget 16384): done sessions and those whose item went to a project leave Sessions" "$(sup_edit perso.md)"
+t none "$(bash_cmd "cat ~/.claude/investigations/supervisor/xperso.md")"
+touch -t 202001010000 "$SUP/perso.md"
+t none "$(sup_edit perso.md)"
+
+for i in $(seq 140); do echo "- 2026-11-26: $(rep h 180)"; done > "$SUP/attachments/perso-history.md"
+t "perso-history.md: The file is 27300 bytes" "$(sup_edit attachments/perso-history.md)"
+t "budget 24576): fold a section's oldest lines into one." "$(bash_cmd "cd ~/.claude/investigations/supervisor/attachments && echo x >> perso-history.md")"
+
 exit $fail

@@ -19,7 +19,7 @@ Re-stage, by path, what steps 1 and 2 changed outside the noted files, and name 
 
 With an open MR/PR, its body is the source of truth: propose only the smallest edits the staged changes made necessary. Without one, draft a body in the repo's template, every section kept in order, blank or N/A included. Either way, a line stays only if the diff, the title, or the linked issue does not already say it: no implementation narration, file inventories, decision logs, or cosmetic nits. The free description is one or two sentences on what the change accomplishes. A gotcha goes in only when it is surprising.
 
-Then a conventional commit title in the sampled `git log` style. `prose` reviews the title and the body (with any proposed edits applied) in `review` mode, and its critiques go through fixers as in `build-this`. Both get the drafted text in their brief. Print the title and the body (or the proposed edits).
+Then a conventional commit title in the sampled `git log` style. `prose` reviews the title and the body (with any proposed edits applied) in `review` mode, and its critiques go through verifiers as in `build-this`. Both get the drafted text in their brief. Print the title and the body (or the proposed edits).
 
 ## 4. Commit and push
 
